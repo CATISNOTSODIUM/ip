@@ -1,5 +1,3 @@
-package constants;
-
 public final class Constants {
     public static final String CHATBOT_NAME = "CATTIS \uD83D\uDC31";
     public static final String HORIZONTAL_LINE = "__________";
@@ -9,5 +7,8 @@ public final class Constants {
     public static final String EXIT_MSG = "Bye. Hope to see you again soon!";
 
     public static final String INPUT_DECORATOR = "~ ";
-    public static final String EXIT_INPUT = "bye";
+    public static final String ADD_DECORATOR = "added: %s";
+    // Commands
+    public static final String CMD_LIST = "list";
+    public static final String CMD_EXIT = "bye";
 }

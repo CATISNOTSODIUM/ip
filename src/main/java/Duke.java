@@ -1,5 +1,3 @@
-import constants.Constants;
-
 public class Duke {
     public static void main(String[] args) {
         System.out.println(Constants.GREETING_MSG);
