@@ -7,4 +7,7 @@ public final class Constants {
     public static final String GREETING_MSG = String.format(
             "Hello! I'm %s.\nWhat can I do for you?", CHATBOT_NAME);
     public static final String EXIT_MSG = "Bye. Hope to see you again soon!";
+
+    public static final String INPUT_DECORATOR = "~ ";
+    public static final String EXIT_INPUT = "bye";
 }
