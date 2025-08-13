@@ -1,3 +1,4 @@
+import Task.*;
 import java.util.*;
 
 public class Cattis {
@@ -12,6 +13,11 @@ public class Cattis {
     private static void init() {
         Cattis.taskList = new TaskList();
     }
+
+    private static void taskListSummary() {
+        System.out.printf(Constants.TASK_LIST_SUMMARY, Cattis.taskList.count());
+    }
+
     private static void run() {
         init();
         // Main program
@@ -33,12 +39,29 @@ public class Cattis {
                 int taskIndex = scanner.nextInt();
                 Cattis.taskList.unmark(taskIndex);
                 System.out.printf((Constants.UNMARK_TASK_MSG), Cattis.taskList.get(taskIndex));
+            } else if (Constants.CMD_TODO.equals(input)) {
+                String taskName = scanner.nextLine();
+                Task newTask = new TodoTask(taskName);
+                Cattis.taskList.add(newTask);
+                System.out.printf((Constants.ADD_TASK_MSG), newTask);
+                taskListSummary();
+            } else if (Constants.CMD_DEADLINE.equals(input)) {
+                String remainingInput = scanner.nextLine();
+                Task newTask = DeadlineTask.createFromPrompt(remainingInput);
+                Cattis.taskList.add(newTask);
+                System.out.printf((Constants.ADD_TASK_MSG), newTask);
+                taskListSummary();
+            } else if (Constants.CMD_EVENT.equals(input)) {
+                String remainingInput = scanner.nextLine();
+                Task newTask = EventTask.createFromPrompt(remainingInput);
+                Cattis.taskList.add(newTask);
+                System.out.printf((Constants.ADD_TASK_MSG), newTask);
+                taskListSummary();
             } else {
-                // read the rest of the line
+                // read the rest of the line and echo
                 String remainingInput = scanner.nextLine();
                 input += remainingInput;
-                Cattis.taskList.add(new Task(input));
-                System.out.printf((Constants.ADD_DECORATOR) + "\n", input);
+                System.out.println("Invalid command " + input);
             }
         }
     }
