@@ -14,6 +14,23 @@ public class TaskList {
         tasks.add(task);
     }
 
+    // index is one-indexed
+    public Task get(int index) {
+        return this.tasks.get(index - 1);
+    }
+
+    // index is one-indexed
+    public void mark(int index) {
+        // TODO: Error handling out of bounds
+        this.tasks.get(index - 1).mark();
+    }
+
+    // index is one-indexed
+    public void unmark(int index) {
+        // TODO: Error handling out of bounds
+        this.tasks.get(index - 1).unmark();
+    }
+
     @Override
     public String toString() {
         if (this.tasks.isEmpty()) {
