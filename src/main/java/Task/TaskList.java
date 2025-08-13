@@ -1,3 +1,5 @@
+package Task;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,5 +41,9 @@ public class TaskList {
         return IntStream.range(0, this.tasks.size())
                 .mapToObj(index -> String.format("%s. %s", index + 1, this.tasks.get(index)))
                 .collect(Collectors.joining("\n"));
+    }
+
+    public int count() {
+        return this.tasks.size();
     }
 }

@@ -1,6 +1,6 @@
-import java.util.List;
+package Task;
 
-public class Task {
+public abstract class Task {
     private final String taskName;
     private boolean isCompleted;
 
