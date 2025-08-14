@@ -21,8 +21,13 @@ Nice! I've marked this task as done:
 OK, I've marked this task as not done yet:
 [D][ ] task 2 (by: Sunday)
 ⚠ OOPS! Tasks out of bounded
+Noted. I've removed this task:
+[D][ ] task 2 (by: Sunday)
+Now you have 2 tasks in the list.
+⚠ OOPS! Tasks out of bounded
+Nice! I've marked this task as done:
+[E][X] task 3 (from: Mon 2pm to: 4pm)
 Here are the tasks in your list:
 1. [T][X]  task 1
-2. [D][ ] task 2 (by: Sunday)
-3. [E][ ] task 3 (from: Mon 2pm to: 4pm)
+2. [E][X] task 3 (from: Mon 2pm to: 4pm)
 Bye. Hope to see you again soon!

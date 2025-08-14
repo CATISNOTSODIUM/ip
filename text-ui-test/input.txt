@@ -8,5 +8,8 @@ mark 1
 mark 2
 unmark 2
 mark 4
+delete 2
+mark 3
+mark 2
 list
 bye

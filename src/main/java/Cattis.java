@@ -58,6 +58,11 @@ public class Cattis {
                     Cattis.taskList.add(newTask);
                     System.out.printf((Constants.ADD_TASK_MSG), newTask);
                     taskListSummary();
+                } else if (Constants.CMD_DELETE.equals(input)) {
+                    int taskIndex = scanner.nextInt();
+                    Task deletedTask = Cattis.taskList.delete(taskIndex);
+                    System.out.printf((Constants.REMOVE_TASK_MSG), deletedTask);
+                    taskListSummary();
                 } else {
                     // read the rest of the line and echo
                     String remainingInput = scanner.nextLine();

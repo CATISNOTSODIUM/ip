@@ -39,6 +39,16 @@ public class TaskList {
         this.tasks.get(index - 1).unmark();
     }
 
+    // index is one-indexed
+    public Task delete(int index) throws CattisException {
+        if (index > this.count()) {
+            throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
+        }
+        Task deletedTask = this.tasks.get(index - 1);
+        this.tasks.remove(index - 1);
+        return deletedTask;
+    }
+
     @Override
     public String toString() {
         if (this.tasks.isEmpty()) {
