@@ -21,9 +21,8 @@ public class Cattis {
     private static void run() {
         init();
         // Main program
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print(Constants.INPUT_DECORATOR);
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.next();
             // Dispatching based on input
             if (Constants.CMD_EXIT.equals(input)) {
@@ -62,6 +61,10 @@ public class Cattis {
                 String remainingInput = scanner.nextLine();
                 input += remainingInput;
                 System.out.println("Invalid command " + input);
+            }
+
+            if (!scanner.hasNextLine()) {
+                break;
             }
         }
     }
