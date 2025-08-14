@@ -1,5 +1,7 @@
 package Task;
 
+import Exceptions.CattisException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,14 +24,18 @@ public class TaskList {
     }
 
     // index is one-indexed
-    public void mark(int index) {
-        // TODO: Error handling out of bounds
+    public void mark(int index) throws CattisException {
+        if (index > this.count()) {
+            throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
+        }
         this.tasks.get(index - 1).mark();
     }
 
     // index is one-indexed
-    public void unmark(int index) {
-        // TODO: Error handling out of bounds
+    public void unmark(int index) throws CattisException {
+        if (index > this.count()) {
+            throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
+        }
         this.tasks.get(index - 1).unmark();
     }
 

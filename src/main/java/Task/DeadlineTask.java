@@ -1,5 +1,7 @@
 package Task;
 
+import Exceptions.CattisException;
+
 public class DeadlineTask extends Task {
     private static final String icon = "[D]";
     private final String deadline;
@@ -8,11 +10,14 @@ public class DeadlineTask extends Task {
         this.deadline = deadline;
     }
 
-    public static DeadlineTask createFromPrompt(String prompt) {
+    public static DeadlineTask createFromPrompt(String prompt) throws CattisException {
         String[] parts = prompt.split("/by", 2);
         if (parts.length != 2) {
-            return null;
+            throw new CattisException(CattisException.INCORRECT_FORMAT_DEADLINE);
         } else {
+            if (parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
+                throw new CattisException(CattisException.EMPTY_FIELD);
+            }
             return new DeadlineTask(parts[0].trim(), parts[1].trim());
         }
     }

@@ -1,9 +1,12 @@
 list
-todo borrow book
-deadline return book /by Sunday
-event project meeting /from Mon 2pm /to 4pm
+todo task 1
+deadline task 2 /by
+deadline task 2 /by Sunday
+event task 3 /from Mon 2pm
+event task 3 /from Mon 2pm /to 4pm
 mark 1
 mark 2
 unmark 2
+mark 4
 list
 bye
