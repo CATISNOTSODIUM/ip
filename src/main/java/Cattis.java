@@ -7,6 +7,7 @@ public class Cattis {
     private static TaskList taskList;
     public static void main(String[] args) {
         System.out.println(Constants.GREETING_MSG);
+        Command.listCommands();
         run();
         System.out.println(Constants.EXIT_MSG);
     }
@@ -15,8 +16,8 @@ public class Cattis {
         Cattis.taskList = new TaskList();
     }
 
-    private static void taskListSummary() {
-        System.out.printf(Constants.TASK_LIST_SUMMARY, Cattis.taskList.count());
+    public static TaskList getTaskList() {
+        return Cattis.taskList;
     }
 
     private static void run() {
@@ -26,50 +27,17 @@ public class Cattis {
         while (true) {
             try {
                 String input = scanner.next();
-                // Dispatching based on input
-                if (Constants.CMD_EXIT.equals(input)) {
+                Command cmd = Command.fromString(input);
+                if (cmd.isExit()) {
                     break;
-                } else if (Constants.CMD_LIST.equals(input)) {
-                    System.out.println(Constants.LIST_TASK_MSG);
-                    System.out.println(Cattis.taskList);
-                } else if (Constants.CMD_MARK.equals(input)) {
-                    int taskIndex = scanner.nextInt();
-                    Cattis.taskList.mark(taskIndex);
-                    System.out.printf((Constants.MARK_TASK_MSG), Cattis.taskList.get(taskIndex));
-                } else if (Constants.CMD_UNMARK.equals(input)) {
-                    int taskIndex = scanner.nextInt();
-                    Cattis.taskList.unmark(taskIndex);
-                    System.out.printf((Constants.UNMARK_TASK_MSG), Cattis.taskList.get(taskIndex));
-                } else if (Constants.CMD_TODO.equals(input)) {
-                    String taskName = scanner.nextLine();
-                    Task newTask = TodoTask.createFromPrompt(taskName);
-                    Cattis.taskList.add(newTask);
-                    System.out.printf((Constants.ADD_TASK_MSG), newTask);
-                    taskListSummary();
-                } else if (Constants.CMD_DEADLINE.equals(input)) {
-                    String remainingInput = scanner.nextLine();
-                    Task newTask = DeadlineTask.createFromPrompt(remainingInput);
-                    Cattis.taskList.add(newTask);
-                    System.out.printf((Constants.ADD_TASK_MSG), newTask);
-                    taskListSummary();
-                } else if (Constants.CMD_EVENT.equals(input)) {
-                    String remainingInput = scanner.nextLine();
-                    Task newTask = EventTask.createFromPrompt(remainingInput);
-                    Cattis.taskList.add(newTask);
-                    System.out.printf((Constants.ADD_TASK_MSG), newTask);
-                    taskListSummary();
-                } else if (Constants.CMD_DELETE.equals(input)) {
-                    int taskIndex = scanner.nextInt();
-                    Task deletedTask = Cattis.taskList.delete(taskIndex);
-                    System.out.printf((Constants.REMOVE_TASK_MSG), deletedTask);
-                    taskListSummary();
-                } else {
+                } else if (cmd.isDefault()) {
                     // read the rest of the line and echo
                     String remainingInput = scanner.nextLine();
                     input += remainingInput;
                     throw new CattisException("Invalid command " + input);
+                } else {
+                    cmd.execute(scanner);
                 }
-
                 if (!scanner.hasNextLine()) {
                     break;
                 }
