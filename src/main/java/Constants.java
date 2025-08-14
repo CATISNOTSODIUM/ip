@@ -22,4 +22,6 @@ public final class Constants {
     public static final String CMD_TODO = "todo";
     public static final String CMD_DEADLINE = "deadline";
     public static final String CMD_EVENT = "event";
+    // Default
+    public static final String CMD_DEFAULT = "default";
 }
