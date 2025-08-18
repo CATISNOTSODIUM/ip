@@ -36,6 +36,15 @@ public class EventTask extends Task {
     }
 
     @Override
+    public String toEncodedString() {
+        return icon + Task.SPLITER
+                + super.getStatusIcon()
+                + Task.SPLITER + super.getTaskName()
+                + this.startTime + Task.SPLITER
+                + this.endTime;
+    }
+
+    @Override
     public String toString() {
         return icon + super.toString() + String.format(
                 " (from: %s to: %s)", this.startTime, this.endTime

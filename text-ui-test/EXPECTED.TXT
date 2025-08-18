@@ -2,32 +2,47 @@ Hello! I'm CATTIS 🐱.
 What can I do for you?
 Here are the tasks in your list:
 <empty>
+----
 Got it. I've added this task:
-[T][ ]  task 1
+[T][ ] task 1
 Now you have 1 tasks in the list.
+----
 ⚠ OOPS! Fields must not be left empty.
+----
 Got it. I've added this task:
 [D][ ] task 2 (by: Sunday)
 Now you have 2 tasks in the list.
+----
 ⚠ OOPS! Invalid format.
 Correct format: event [task] /from [Start] /to [End]
+----
 Got it. I've added this task:
 [E][ ] task 3 (from: Mon 2pm to: 4pm)
 Now you have 3 tasks in the list.
+----
 Nice! I've marked this task as done:
-[T][X]  task 1
+[T][X] task 1
+----
 Nice! I've marked this task as done:
 [D][X] task 2 (by: Sunday)
+----
 OK, I've marked this task as not done yet:
 [D][ ] task 2 (by: Sunday)
+----
 ⚠ OOPS! Tasks out of bounded
+----
 Noted. I've removed this task:
 [D][ ] task 2 (by: Sunday)
 Now you have 2 tasks in the list.
+----
 ⚠ OOPS! Tasks out of bounded
+----
 Nice! I've marked this task as done:
 [E][X] task 3 (from: Mon 2pm to: 4pm)
+----
 Here are the tasks in your list:
-1. [T][X]  task 1
+1. [T][X] task 1
 2. [E][X] task 3 (from: Mon 2pm to: 4pm)
+----
+----
 Bye. Hope to see you again soon!

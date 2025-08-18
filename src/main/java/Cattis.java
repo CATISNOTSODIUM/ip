@@ -3,47 +3,48 @@ import Task.*;
 import java.util.*;
 
 public class Cattis {
-
-    private static TaskList taskList;
+    private final Ui ui;
+    private final Parser parser;
+    private TaskList taskList;
     public static void main(String[] args) {
-        System.out.println(Constants.GREETING_MSG);
-        Command.listCommands();
-        run();
-        System.out.println(Constants.EXIT_MSG);
+        Cattis cattis = new Cattis();
+        cattis.run();
     }
 
-    private static void init() {
-        Cattis.taskList = new TaskList();
+    public Cattis() {
+        this.ui = new Ui();
+        this.parser = new Parser();
+        this.taskList = new TaskList();
     }
 
-    public static TaskList getTaskList() {
-        return Cattis.taskList;
+    public Cattis(String filePath) {
+        this.ui = new Ui();
+        this.parser = new Parser();
+        this.taskList = new TaskList(); // TODO: Load from filePath
     }
 
-    private static void run() {
-        init();
-        // Main program
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+    public TaskList getTaskList() {
+        return this.taskList;
+    }
+
+    private void run() {
+        ui.showInitialMessages();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                String input = scanner.next();
-                Command cmd = Command.fromString(input);
-                if (cmd.isExit()) {
-                    break;
-                } else if (cmd.isDefault()) {
-                    // read the rest of the line and echo
-                    String remainingInput = scanner.nextLine();
-                    input += remainingInput;
-                    throw new CattisException("Invalid command " + input);
-                } else {
-                    cmd.execute(scanner);
-                }
-                if (!scanner.hasNextLine()) {
+                String input = ui.readCommand();
+                if ("".equals(input)) {
                     break;
                 }
+                Command cmd = parser.parse(input);
+                isExit = cmd.isExit();
+                cmd.execute(this);
             } catch (CattisException err) {
-                System.out.println(err.toString());
+                ui.showError(err);
+            } finally {
+                ui.showLine();
             }
         }
+        ui.showExitMessages();
     }
 }

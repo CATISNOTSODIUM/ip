@@ -1,84 +1,113 @@
 import Exceptions.CattisException;
+import Task.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public enum Command {
-    LIST(Constants.CMD_LIST) {
-        @Override
-        public void execute(Scanner scanner) throws CattisException {
-            Handler.handleList();
-        }
-    },
-    EXIT(Constants.CMD_EXIT),
-    MARK(Constants.CMD_MARK) {
-        @Override
-        public void execute(Scanner scanner) throws CattisException {
-            Handler.handleMark(scanner);
-        }
-    },
-    UNMARK(Constants.CMD_UNMARK) {
-        @Override
-        public void execute(Scanner scanner) throws CattisException {
-            Handler.handleUnmark(scanner);
-        }
-    },
-    DELETE(Constants.CMD_DELETE) {
-        @Override
-        public void execute(Scanner scanner) throws CattisException {
-            Handler.handleDelete(scanner);
-        }
-    },
-    TODO(Constants.CMD_TODO) {
-        @Override
-        public void execute(Scanner scanner) throws CattisException {
-            Handler.handleTodoTask(scanner);
-        }
-    },
-    DEADLINE(Constants.CMD_DEADLINE) {
-        @Override
-        public void execute(Scanner scanner) throws CattisException {
-            Handler.handleDeadlineTask(scanner);
-        }
-    },
-    EVENT(Constants.CMD_EVENT) {
-        @Override
-        public void execute(Scanner scanner) throws CattisException {
-            Handler.handleEventTask(scanner);
-        }
-    },
-    DEFAULT(Constants.CMD_DEFAULT);
-
-    private final String command;
-
-    Command(String command) {
-        this.command = command;
-    }
-
-    public static Command fromString(String input) {
-        for (Command cmd : values()) {
-            if (cmd.command.equals(input)) {
-                return cmd;
-            }
-        }
-        return DEFAULT;
-    }
-
-    public void execute(Scanner scanner) throws CattisException {}
+public abstract class Command {
+    public abstract void execute(Cattis cattis) throws CattisException;
 
     public boolean isExit() {
-        return Constants.CMD_EXIT.equals(this.command);
+        return false;
     }
+}
 
-    public boolean isDefault() {
-        return Constants.CMD_DEFAULT.equals(this.command);
+class ListCommand extends Command {
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        System.out.println(Constants.LIST_TASK_MSG);
+        System.out.println(cattis.getTaskList());
     }
+}
 
-    // A util method to list all commands
-    public static void listCommands() {
-        String allCommand = Arrays.stream(Command.class.getEnumConstants())
-                .map(cmd -> cmd.command).collect(Collectors.joining(", "));
-        System.out.println("All commands: " + allCommand);
+class ExitCommand extends Command  {
+    @Override
+    public void execute(Cattis cattis) throws CattisException {}
+
+    @Override
+    public boolean isExit() {
+        return true;
+    }
+}
+
+class MarkCommand extends Command {
+    private final int taskIndex;
+    public MarkCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
+    }
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        cattis.getTaskList().mark(taskIndex);
+        System.out.printf((Constants.MARK_TASK_MSG), cattis.getTaskList().get(taskIndex));
+    }
+}
+
+class UnmarkCommand extends Command {
+    private final int taskIndex;
+    public UnmarkCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
+    }
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        cattis.getTaskList().unmark(taskIndex);
+        System.out.printf((Constants.UNMARK_TASK_MSG), cattis.getTaskList().get(taskIndex));
+    }
+}
+
+class DeleteTaskCommand extends Command {
+    private final int taskIndex;
+    public DeleteTaskCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
+    }
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        Task deletedTask = cattis.getTaskList().delete(taskIndex);
+        System.out.printf((Constants.REMOVE_TASK_MSG), deletedTask);
+        cattis.getTaskList().taskListSummary();
+    }
+}
+
+abstract class AddTaskCommand extends Command {}
+
+class AddTodoTaskCommand extends AddTaskCommand {
+    private final String taskName;
+    public AddTodoTaskCommand(String taskName) {
+        this.taskName = taskName.trim();
+    }
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        Task newTask = TodoTask.createFromPrompt(taskName);
+        cattis.getTaskList().add(newTask);
+        System.out.printf((Constants.ADD_TASK_MSG), newTask);
+        cattis.getTaskList().taskListSummary();
+    }
+}
+
+class AddDeadlineTaskCommand extends AddTaskCommand {
+    private final String taskName;
+    public AddDeadlineTaskCommand(String taskName) {
+        this.taskName = taskName.trim();
+    }
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        Task newTask = DeadlineTask.createFromPrompt(taskName);
+        cattis.getTaskList().add(newTask);
+        System.out.printf((Constants.ADD_TASK_MSG), newTask);
+        cattis.getTaskList().taskListSummary();
+    }
+}
+
+class AddEventTaskCommand extends AddTaskCommand {
+    private final String taskName;
+    public AddEventTaskCommand(String taskName) {
+        this.taskName = taskName.trim();
+    }
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        Task newTask = EventTask.createFromPrompt(taskName);
+        cattis.getTaskList().add(newTask);
+        System.out.printf((Constants.ADD_TASK_MSG), newTask);
+        cattis.getTaskList().taskListSummary();
     }
 }

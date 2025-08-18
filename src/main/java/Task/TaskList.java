@@ -49,6 +49,11 @@ public class TaskList {
         return deletedTask;
     }
 
+    public void taskListSummary() {
+        String TASK_LIST_SUMMARY = "Now you have %s tasks in the list.\n";
+        System.out.printf(TASK_LIST_SUMMARY, this.count());
+    }
+
     @Override
     public String toString() {
         if (this.tasks.isEmpty()) {

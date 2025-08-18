@@ -23,6 +23,14 @@ public class DeadlineTask extends Task {
     }
 
     @Override
+    public String toEncodedString() {
+        return icon + Task.SPLITER
+                + super.getStatusIcon()
+                + Task.SPLITER + super.getTaskName()
+                + this.deadline;
+    }
+
+    @Override
     public String toString() {
         return icon + super.toString() + String.format(
                 " (by: %s)", this.deadline

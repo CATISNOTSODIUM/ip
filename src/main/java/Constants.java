@@ -9,7 +9,6 @@ public final class Constants {
     public static final String MARK_TASK_MSG = "Nice! I've marked this task as done:\n%s\n";
     public static final String UNMARK_TASK_MSG = "OK, I've marked this task as not done yet:\n%s\n";
     public static final String ADD_TASK_MSG = "Got it. I've added this task:\n%s\n";
-    public static final String TASK_LIST_SUMMARY = "Now you have %s tasks in the list.\n";
     public static final String REMOVE_TASK_MSG = "Noted. I've removed this task:\n%s\n";
     public static final String ADD_DECORATOR = "added: %s";
     // Commands
