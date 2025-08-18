@@ -3,7 +3,7 @@ package Task;
 import Exceptions.CattisException;
 
 public class EventTask extends Task {
-    private static final String icon = "[E]";
+    public static final String icon = "[E]";
 
     private final String startTime;
     private final String endTime;
@@ -37,10 +37,10 @@ public class EventTask extends Task {
 
     @Override
     public String toEncodedString() {
-        return icon + Task.SPLITER
+        return icon + Task.SPLITTER
                 + super.getStatusIcon()
-                + Task.SPLITER + super.getTaskName()
-                + this.startTime + Task.SPLITER
+                + Task.SPLITTER + super.getTaskName() + Task.SPLITTER
+                + this.startTime + Task.SPLITTER
                 + this.endTime;
     }
 

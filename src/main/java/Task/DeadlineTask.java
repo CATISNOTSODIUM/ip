@@ -3,7 +3,7 @@ package Task;
 import Exceptions.CattisException;
 
 public class DeadlineTask extends Task {
-    private static final String icon = "[D]";
+    public static final String icon = "[D]";
     private final String deadline;
     DeadlineTask(String taskName, String deadline) {
         super(taskName);
@@ -24,9 +24,9 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toEncodedString() {
-        return icon + Task.SPLITER
+        return icon + Task.SPLITTER
                 + super.getStatusIcon()
-                + Task.SPLITER + super.getTaskName()
+                + Task.SPLITTER + super.getTaskName() + Task.SPLITTER
                 + this.deadline;
     }
 

@@ -54,6 +54,12 @@ public class TaskList {
         System.out.printf(TASK_LIST_SUMMARY, this.count());
     }
 
+    public String toEncodedString() {
+        return tasks.stream().
+                map(Task::toEncodedString).
+                collect(Collectors.joining("\n"));
+    }
+
     @Override
     public String toString() {
         if (this.tasks.isEmpty()) {

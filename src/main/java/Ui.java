@@ -27,6 +27,10 @@ public class Ui {
         System.out.println(err.toString());
     }
 
+    public void showMessage(String msg) {
+        System.out.println(msg);
+    }
+
     public void showExitMessages() {
         System.out.println(Constants.EXIT_MSG);
     }
