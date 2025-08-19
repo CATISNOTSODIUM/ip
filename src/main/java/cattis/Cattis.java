@@ -1,5 +1,9 @@
-import Exceptions.CattisException;
-import Task.*;
+package cattis;
+
+import cattis.command.Command;
+import cattis.exception.CattisException;
+import cattis.task.*;
+import cattis.ui.Ui;
 
 public class Cattis {
     private final Ui ui;

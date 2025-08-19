@@ -1,4 +1,4 @@
-package cattis.Exceptions;
+package cattis.exception;
 
 public class CattisLoadFileException extends CattisException {
     public CattisLoadFileException(String msg) {

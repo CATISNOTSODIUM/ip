@@ -1,6 +1,6 @@
-package cattis.Task;
+package cattis.task;
 
-import cattis.Exceptions.CattisException;
+import cattis.exception.CattisException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

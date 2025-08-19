@@ -1,5 +1,8 @@
-import Exceptions.CattisException;
-import Exceptions.CattisParseException;
+package cattis;
+
+import cattis.command.*;
+import cattis.exception.CattisException;
+import cattis.exception.CattisParseException;
 
 import java.util.Scanner;
 

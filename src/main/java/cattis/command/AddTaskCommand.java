@@ -1,3 +1,4 @@
 package cattis.command;
 
-public abstract class AddTaskCommand extends Command {}
+public abstract class AddTaskCommand extends Command {
+}

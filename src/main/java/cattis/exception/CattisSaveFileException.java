@@ -1,4 +1,4 @@
-package cattis.Exceptions;
+package cattis.exception;
 
 public class CattisSaveFileException extends CattisException {
     public CattisSaveFileException(String msg) {

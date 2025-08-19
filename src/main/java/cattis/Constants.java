@@ -1,3 +1,5 @@
+package cattis;
+
 public final class Constants {
     public static final String CHATBOT_NAME = "CATTIS \uD83D\uDC31";
     public static final String HORIZONTAL_LINE = "__________";
@@ -17,7 +19,7 @@ public final class Constants {
     public static final String CMD_MARK = "mark";
     public static final String CMD_UNMARK = "unmark";
     public static final String CMD_DELETE = "delete";
-    // Task types
+    // cattis.Task types
     public static final String CMD_TODO = "todo";
     public static final String CMD_DEADLINE = "deadline";
     public static final String CMD_EVENT = "event";

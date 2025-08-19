@@ -1,5 +1,6 @@
-package cattis;
+package cattis.ui;
 
+import cattis.Constants;
 import cattis.exception.CattisException;
 
 import java.util.Scanner;

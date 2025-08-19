@@ -1,7 +1,9 @@
-import Exceptions.CattisException;
-import Exceptions.CattisSaveFileException;
-import Task.Task;
-import Task.TaskList;
+package cattis;
+
+import cattis.exception.CattisException;
+import cattis.exception.CattisSaveFileException;
+import cattis.task.Task;
+import cattis.task.TaskList;
 
 import java.io.*;
 import java.util.ArrayList;
