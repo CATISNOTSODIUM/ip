@@ -1,6 +1,6 @@
-package Task;
+package cattis.Task;
 
-import Exceptions.CattisException;
+import cattis.Exceptions.CattisException;
 
 import java.util.ArrayList;
 import java.util.List;

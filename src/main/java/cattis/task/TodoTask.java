@@ -1,6 +1,6 @@
-package Task;
+package cattis.Task;
 
-import Exceptions.CattisException;
+import cattis.Exceptions.CattisException;
 
 public class TodoTask extends Task {
     public static final String icon = "[T]";

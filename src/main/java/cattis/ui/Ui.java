@@ -1,4 +1,6 @@
-import Exceptions.CattisException;
+package cattis;
+
+import cattis.exception.CattisException;
 
 import java.util.Scanner;
 

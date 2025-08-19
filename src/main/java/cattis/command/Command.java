@@ -1,9 +1,7 @@
-import Exceptions.CattisException;
-import Task.*;
+package cattis;
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.stream.Collectors;
+import cattis.exception.CattisException;
+import cattis.task.*;
 
 public abstract class Command {
     public abstract void execute(Cattis cattis) throws CattisException;
