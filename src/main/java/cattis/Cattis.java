@@ -5,7 +5,7 @@ import cattis.exception.CattisException;
 import cattis.task.*;
 import cattis.ui.Ui;
 
-public class Cattis {
+public class Cattis implements CattisInterface {
     private final Ui ui;
     private final Parser parser;
     private final Storage storage;
@@ -36,7 +36,7 @@ public class Cattis {
         return this.ui;
     }
 
-    private void run() {
+    public void run() {
         ui.showInitialMessages();
         boolean isExit = false;
         while (!isExit) {

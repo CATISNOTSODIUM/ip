@@ -1,6 +1,7 @@
 package cattis.command;
 
 import cattis.Cattis;
+import cattis.CattisInterface;
 import cattis.Constants;
 import cattis.exception.CattisException;
 
@@ -12,7 +13,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(Cattis cattis) throws CattisException {
+    public void execute(CattisInterface cattis) throws CattisException {
         cattis.getTaskList().mark(taskIndex);
         System.out.printf((Constants.MARK_TASK_MSG), cattis.getTaskList().get(taskIndex));
     }
