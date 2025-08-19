@@ -42,6 +42,10 @@ public class Cattis {
                     break;
                 }
                 Command cmd = parser.parse(input);
+                if (cmd == null) {
+                    ui.showMessage("Cannot parse input.");
+                    continue;
+                }
                 isExit = cmd.isExit();
                 cmd.execute(this);
                 storage.save(this.taskList);

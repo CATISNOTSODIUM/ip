@@ -43,8 +43,8 @@ public class Storage {
         } catch (IOException err) {
             throw new CattisException("Failed to load file. " + err.getMessage());
         }
-        for (int i = 0; i < result.size(); i++) {
-            cattis.getTaskList().add(Task.decode(result.get(i)));
+        for (String s : result) {
+            cattis.getTaskList().add(Task.decode(s));
         }
     }
 

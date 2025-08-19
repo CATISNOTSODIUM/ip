@@ -2,6 +2,8 @@ package Task;
 
 import Exceptions.CattisException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +11,9 @@ import java.util.stream.Collectors;
 
 public abstract class Task {
     public static final String SPLITTER = "<>";
+    // Date time
+    public static final String DATE_TIME_INPUT_FORMATTER = "yyyy-MM-dd";
+    public static final String DATE_TIME_OUTPUT_FORMATTER = "MMM dd yyyy";
     private final String taskName;
     private boolean isCompleted;
 
@@ -39,6 +44,7 @@ public abstract class Task {
         // TYPE | STATUS | TASK_NAME | DEADLINE / START DATE | END DATE
         List<String> arr = Arrays.stream(payload.split(Task.SPLITTER))
                 .map(String::trim).collect(Collectors.toList());
+        System.out.println("Load task " + arr.toString());
         if (arr.size() < 3) {
             throw new CattisException("Failed to load task from disk");
         }
