@@ -1,0 +1,21 @@
+package cattis.command;
+
+import cattis.Cattis;
+import cattis.Constants;
+import cattis.exception.CattisException;
+import cattis.task.Task;
+
+public class DeleteTaskCommand extends Command {
+    private final int taskIndex;
+
+    public DeleteTaskCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
+    }
+
+    @Override
+    public void execute(Cattis cattis) throws CattisException {
+        Task deletedTask = cattis.getTaskList().delete(taskIndex);
+        System.out.printf((Constants.REMOVE_TASK_MSG), deletedTask);
+        cattis.getTaskList().taskListSummary();
+    }
+}
