@@ -1,6 +1,7 @@
 package cattis.command;
 
 import cattis.Cattis;
+import cattis.CattisInterface;
 import cattis.Constants;
 import cattis.exception.CattisException;
 import cattis.task.Task;
@@ -14,7 +15,7 @@ public class AddTodoTaskCommand extends AddTaskCommand {
     }
 
     @Override
-    public void execute(Cattis cattis) throws CattisException {
+    public void execute(CattisInterface cattis) throws CattisException {
         Task newTask = TodoTask.createFromPrompt(taskName);
         cattis.getTaskList().add(newTask);
         System.out.printf((Constants.ADD_TASK_MSG), newTask);

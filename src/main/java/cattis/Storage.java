@@ -20,7 +20,7 @@ public class Storage {
      * Load data from file filePath
      * @throws CattisException If unsuccessfully load the file.
      */
-    public void load(Cattis cattis) throws CattisException {
+    public void load(CattisInterface cattis) throws CattisException {
         File tempFile = new File(this.filePath);
         if (!tempFile.exists()) {
             cattis.getUi().showMessage("Create new file " + this.filePath);
