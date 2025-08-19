@@ -12,6 +12,13 @@ then
     rm ACTUAL.TXT
 fi
 
+# delete data/cattis.txt output from previous run
+if [ -e "./data/cattis.txt" ]
+then
+    rm data/cattis.txt
+fi
+
+
 # compile the code into the bin folder, terminates if error occurred
 if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
 then
