@@ -44,7 +44,6 @@ public abstract class Task {
         // TYPE | STATUS | TASK_NAME | DEADLINE / START DATE | END DATE
         List<String> arr = Arrays.stream(payload.split(Task.SPLITTER))
                 .map(String::trim).collect(Collectors.toList());
-        System.out.println("Load task " + arr.toString());
         if (arr.size() < 3) {
             throw new CattisException("Failed to load task from disk");
         }
