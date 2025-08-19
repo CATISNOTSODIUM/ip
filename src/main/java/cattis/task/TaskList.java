@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class TaskList {
-    private final List<Task> tasks;
+    private List<Task> tasks;
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -72,5 +72,18 @@ public class TaskList {
 
     public int count() {
         return this.tasks.size();
+    }
+
+    public String listByName(String name) {
+        StringBuilder result = new StringBuilder();
+        int index = 1;
+
+        for (Task task : this.tasks) {
+            if (task.getTaskName().toLowerCase().contains(name.toLowerCase())) {
+                result.append(index).append(". ").append(task);
+            }
+            index++;
+        }
+        return result.toString();
     }
 }

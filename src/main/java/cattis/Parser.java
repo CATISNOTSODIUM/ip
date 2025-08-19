@@ -44,6 +44,12 @@ public class Parser {
                 }
                 remainingInput = scanner.nextLine();
                 return new AddTodoTaskCommand(remainingInput);
+            case "find":
+                if (!scanner.hasNextLine()) {
+                    throw new CattisParseException(command);
+                }
+                remainingInput = scanner.nextLine();
+                return new FindTaskCommand(remainingInput);
             case "deadline":
                 if (!scanner.hasNextLine()) {
                     throw new CattisParseException(command);
