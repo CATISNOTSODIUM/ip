@@ -1,7 +1,7 @@
 package cattis.exception;
 
 /**
- * Root of all possible Exceptions from this program
+ * Root of all possible exceptions from this program
  */
 public class CattisException extends Exception {
     // Error messages
