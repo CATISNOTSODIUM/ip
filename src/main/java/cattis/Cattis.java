@@ -5,6 +5,9 @@ import cattis.exception.CattisException;
 import cattis.task.TaskList;
 import cattis.ui.Ui;
 
+/**
+ * The main instance of the application
+ */
 public class Cattis implements CattisInterface {
     private static final String DEFAULT_FILE_PATH = "data/cattis.txt";
     private final Ui ui;

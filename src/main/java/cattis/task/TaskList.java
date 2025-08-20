@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * A class that encapsulate the actual list of tasks
+ */
 public class TaskList {
     private List<Task> tasks;
 
@@ -14,16 +17,28 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Add new task to the list
+     *
+     * @param task the <code>Task</code> instance to be added in the list
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
-    // index is one-indexed
+    /**
+     * Retrieve the task from the specific index
+     * @param index one-indexed position to retrieve from the list
+     * @return <code>Task</code> instance
+     */
     public Task get(int index) {
         return this.tasks.get(index - 1);
     }
 
-    // index is one-indexed
+    /**
+     * Mark the task from the specific index as finished.
+     * @param index one-indexed position to mark as finished
+     */
     public void mark(int index) throws CattisException {
         if (index > this.count()) {
             throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
@@ -31,7 +46,10 @@ public class TaskList {
         this.tasks.get(index - 1).mark();
     }
 
-    // index is one-indexed
+    /**
+     * Mark the task from the specific index as unfinished.
+     * @param index one-indexed position to mark as unfinished
+     */
     public void unmark(int index) throws CattisException {
         if (index > this.count()) {
             throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
@@ -39,7 +57,11 @@ public class TaskList {
         this.tasks.get(index - 1).unmark();
     }
 
-    // index is one-indexed
+    /**
+     * Delete the task from the specific index
+     * @param index one-indexed position to delete from the list
+     * @return <code>Task</code> instance that has been deleted
+     */
     public Task delete(int index) throws CattisException {
         if (index > this.count()) {
             throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
@@ -49,11 +71,18 @@ public class TaskList {
         return deletedTask;
     }
 
+    /**
+     * Quickly prints out the number of elements in the list
+     */
     public void taskListSummary() {
         String TASK_LIST_SUMMARY = "Now you have %s tasks in the list.\n";
         System.out.printf(TASK_LIST_SUMMARY, this.count());
     }
 
+    /**
+     * Encode task list as string to be saved as text file
+     * @return the encoded string
+     */
     public String toEncodedString() {
         return tasks.stream().
                 map(Task::toEncodedString).
@@ -74,6 +103,12 @@ public class TaskList {
         return this.tasks.size();
     }
 
+
+    /**
+     * Search all tasks whose task name contains the keyword <code>name</code>.
+     * @param name keyword to search
+     * @return list of filtered tasks concatenated as string
+     */
     public String listByName(String name) {
         StringBuilder result = new StringBuilder();
         int index = 1;

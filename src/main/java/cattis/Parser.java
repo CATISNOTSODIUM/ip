@@ -15,11 +15,20 @@ import cattis.exception.CattisParseException;
 
 import java.util.Scanner;
 
+/**
+ * An instance to parse the input string into command
+ */
 public class Parser {
     public Parser() {
     }
 
-    // parse the entire line
+    /**
+     * Convert string to command for execution
+     *
+     * @param payload the string content to parse
+     * @return Command the result command
+     * @throws CattisException for parsing error
+     */
     public Command parse(String payload) throws CattisException {
         Scanner scanner = new Scanner(payload);
         String command = scanner.next();

@@ -5,6 +5,9 @@ import cattis.exception.CattisException;
 
 import java.util.Scanner;
 
+/**
+ * Handle all user input / output logics
+ */
 public class Ui {
     private final Scanner scanner;
 

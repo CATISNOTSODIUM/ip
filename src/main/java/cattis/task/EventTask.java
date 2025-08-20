@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task with <code>startTime</code> and <code>endTime</code>.
+ */
 public class EventTask extends Task {
     public static final String icon = "[E]";
 
@@ -17,6 +20,19 @@ public class EventTask extends Task {
         setTime(startTime, endTime);
     }
 
+    /**
+     * Create an <code>EventTask</code> from the user-provided input (without keyword <code>event</code>)
+     * <p>
+     * The expected format is
+     * <pre>
+     * [taskName] /from [start time] /to [end time]
+     * </pre>
+     * Both start time and end time must be in the format of <code>YYYY-MM-DD</code> (e.g. 2020-11-11).
+     *
+     * @param prompt user prompt without command keyword <code>event</code>
+     * @return <code>EventTask</code> instance
+     * @throws CattisException for parsing error
+     */
     public static EventTask createFromPrompt(String prompt) throws CattisException {
         String taskDescription = null;
         String startTime = null;
@@ -54,7 +70,16 @@ public class EventTask extends Task {
         );
     }
 
-
+    /**
+     * Sets the start time and end time for the task with input validation.
+     * <p>
+     * This includes checking the format of the input strings and ensuring that
+     * the start time occurs before the end time.
+     *
+     * @param startTime the start time string to be validated and set
+     * @param endTime   the end time string to be validated and set
+     * @throws CattisException if the format is invalid or the start time is not before the end time
+     */
     public void setTime(String startTime, String endTime) throws CattisException {
         try {
             var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);

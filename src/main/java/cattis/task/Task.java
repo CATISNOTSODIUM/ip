@@ -6,7 +6,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * Represents an abstract task with a name and completion status.
+ * This class serves as a base for specific task types such as <code>TodoTask</code>,
+ * <code>DeadlineTask</code>, and <code>EventTask</code>.
+ * It provides common functionality for marking tasks as completed / unfinished, and encoding/decoding tasks to
+ * save as in a file.
+ *
+ * <p>Tasks can be serialized and deserialized using a custom format with the {@code SPLITTER} delimiter.
+ * The {@code decode} method reconstructs a {@code Task} object from a string payload.
+ */
 public abstract class Task {
     public static final String SPLITTER = "<>";
     // Date time
@@ -19,8 +28,16 @@ public abstract class Task {
         this.taskName = taskName;
     }
 
+    /**
+     * Decodes a serialized task string into a <code>Task</code> object.
+     * The payload must follow the format:
+     * <code>TYPE | STATUS | TASK_NAME | [DEADLINE / START DATE] | [END DATE]</code>.
+     *
+     * @param payload the encoded task string
+     * @return the decoded <code>Task</code> object
+     * @throws CattisException if the payload cannot be parsed
+     */
     public static Task decode(String payload) throws CattisException {
-        // TYPE | STATUS | TASK_NAME | DEADLINE / START DATE | END DATE
         List<String> arr = Arrays.stream(payload.split(Task.SPLITTER))
                 .map(String::trim).collect(Collectors.toList());
         if (arr.size() < 3) {
@@ -63,7 +80,11 @@ public abstract class Task {
         return this.taskName;
     }
 
-    // Encoded to task
+    /**
+     * Encodes the task into a string representation for storage.
+     *
+     * @return the encoded string of the task
+     */
     public abstract String toEncodedString();
 
     @Override

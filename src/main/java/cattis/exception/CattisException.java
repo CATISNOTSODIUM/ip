@@ -1,5 +1,8 @@
 package cattis.exception;
 
+/**
+ * Root of all possible Exceptions from this program
+ */
 public class CattisException extends Exception {
     // Error messages
     public static final String TASK_OUT_OF_BOUND = "Tasks out of bounded";

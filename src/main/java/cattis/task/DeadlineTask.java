@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a task with <code>deadline</code>.
+ */
 public class DeadlineTask extends Task {
     public static final String icon = "[D]";
     private LocalDate deadline;
@@ -15,6 +18,16 @@ public class DeadlineTask extends Task {
         setTime(deadline);
     }
 
+    /**
+     * Decodes a serialized task string into a <code>DeadlineTask</code> object.
+     * The payload must follow the format:
+     * [taskName] /by [deadline]
+     * The deadline must be in the format of <code>YYYY-MM-DD</code>
+     *
+     * @param prompt the encoded task string
+     * @return the decoded <code>DeadlineTask</code> object
+     * @throws CattisException if the prompt cannot be parsed
+     */
     public static DeadlineTask createFromPrompt(String prompt) throws CattisException {
         String[] parts = prompt.split("/by", 2);
         if (parts.length != 2) {

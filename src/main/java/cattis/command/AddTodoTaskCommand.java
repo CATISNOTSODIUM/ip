@@ -6,6 +6,10 @@ import cattis.exception.CattisException;
 import cattis.task.Task;
 import cattis.task.TodoTask;
 
+/**
+ * Represents the command to add <code>TodoTask</code> to the
+ * task list <code>Cattis.getTaskList()</code> instance.
+ */
 public class AddTodoTaskCommand extends AddTaskCommand {
     private final String taskName;
 

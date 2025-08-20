@@ -4,6 +4,10 @@ import cattis.CattisInterface;
 import cattis.Constants;
 import cattis.exception.CattisException;
 
+/**
+ * Represents the command to mark <code>Task</code>
+ * indexed at <code>taskIndex</code> as finished.
+ */
 public class MarkCommand extends Command {
     private final int taskIndex;
 

@@ -12,6 +12,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A class deals with loading tasks from the file and saving tasks in the file
+ */
 public class Storage {
 
     private final String filePath;
@@ -22,8 +25,8 @@ public class Storage {
 
     /**
      * Load data from file filePath
-     *
-     * @throws CattisException If unsuccessfully load the file.
+     * @param cattis application instance
+     * @throws CattisException If unsuccessfully load the file
      */
     public void load(CattisInterface cattis) throws CattisException {
         File tempFile = new File(this.filePath);
@@ -55,6 +58,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Save <code>tasks</code> to the target file
+     *
+     * @param tasks tasks to be saved
+     * @throws CattisException If unsuccessfully save the file
+     */
     public void save(TaskList tasks) throws CattisException {
         File file = new File(filePath);
         File parentDir = file.getParentFile();

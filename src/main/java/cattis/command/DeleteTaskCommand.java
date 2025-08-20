@@ -5,6 +5,10 @@ import cattis.Constants;
 import cattis.exception.CattisException;
 import cattis.task.Task;
 
+/**
+ * Represents the command to remove <code>Task</code>
+ * from <code>Cattis.TaskList</code>
+ */
 public class DeleteTaskCommand extends Command {
     private final int taskIndex;
 
