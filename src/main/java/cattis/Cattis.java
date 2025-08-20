@@ -47,7 +47,7 @@ public class Cattis implements CattisInterface {
                 }
                 Command cmd = parser.parse(input);
                 if (cmd == null) {
-                    ui.showMessage("Cannot parse input.");
+                    ui.showMessage("Cannot parse input: " + input);
                     continue;
                 }
                 isExit = cmd.isExit();
