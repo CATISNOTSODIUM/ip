@@ -6,6 +6,7 @@ import cattis.ui.Ui;
 public class CattisStub implements CattisInterface {
     private final Ui ui;
     private final TaskList taskList;
+
     public CattisStub() {
         this.ui = new Ui();
         this.taskList = new TaskList();

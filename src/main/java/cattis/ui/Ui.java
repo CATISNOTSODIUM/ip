@@ -11,6 +11,7 @@ public class Ui {
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
+
     public void showInitialMessages() {
         System.out.println(Constants.GREETING_MSG);
     }

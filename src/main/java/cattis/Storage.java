@@ -5,7 +5,11 @@ import cattis.exception.CattisSaveFileException;
 import cattis.task.Task;
 import cattis.task.TaskList;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
@@ -18,6 +22,7 @@ public class Storage {
 
     /**
      * Load data from file filePath
+     *
      * @throws CattisException If unsuccessfully load the file.
      */
     public void load(CattisInterface cattis) throws CattisException {

@@ -1,6 +1,5 @@
 package cattis.command;
 
-import cattis.Cattis;
 import cattis.CattisInterface;
 import cattis.Constants;
 import cattis.exception.CattisException;
