@@ -2,19 +2,15 @@ package cattis;
 
 import cattis.command.Command;
 import cattis.exception.CattisException;
-import cattis.task.*;
+import cattis.task.TaskList;
 import cattis.ui.Ui;
 
 public class Cattis implements CattisInterface {
+    private static final String DEFAULT_FILE_PATH = "data/cattis.txt";
     private final Ui ui;
     private final Parser parser;
     private final Storage storage;
     private final TaskList taskList;
-    private static final String DEFAULT_FILE_PATH = "data/cattis.txt";
-    public static void main(String[] args) {
-        Cattis cattis = new Cattis(DEFAULT_FILE_PATH);
-        cattis.run();
-    }
 
     public Cattis(String filePath) {
         this.ui = new Ui();
@@ -26,6 +22,11 @@ public class Cattis implements CattisInterface {
         } catch (CattisException err) {
             ui.showError(err);
         }
+    }
+
+    public static void main(String[] args) {
+        Cattis cattis = new Cattis(DEFAULT_FILE_PATH);
+        cattis.run();
     }
 
     public TaskList getTaskList() {

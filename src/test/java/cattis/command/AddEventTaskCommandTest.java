@@ -4,15 +4,15 @@ import cattis.CattisInterface;
 import cattis.CattisStub;
 import cattis.exception.CattisException;
 import cattis.task.Task;
-import cattis.task.TaskList;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AddEventTaskCommandTest {
 
     @Test
-    public void addEventTask_missingEndDate_exceptionThrown(){
+    public void addEventTask_missingEndDate_exceptionThrown() {
         try {
             AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from 2020-10-10");
             CattisInterface cattis = new CattisStub();
@@ -24,7 +24,7 @@ public class AddEventTaskCommandTest {
     }
 
     @Test
-    public void addEventTask_invalidDate_exceptionThrown(){
+    public void addEventTask_invalidDate_exceptionThrown() {
         try {
             AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from 2020-10-10 /to invalid date");
             CattisInterface cattis = new CattisStub();
@@ -37,7 +37,7 @@ public class AddEventTaskCommandTest {
     }
 
     @Test
-    public void addEventTask_endDateBeforeStartDate_exceptionThrown(){
+    public void addEventTask_endDateBeforeStartDate_exceptionThrown() {
         try {
             AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from 2020-12-10 /to 2020-10-10");
             CattisInterface cattis = new CattisStub();
@@ -50,7 +50,7 @@ public class AddEventTaskCommandTest {
     }
 
     @Test
-    public void addEventTask_success(){
+    public void addEventTask_success() {
         try {
             AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from 2020-12-10 /to 2020-12-11");
             CattisInterface cattis = new CattisStub();

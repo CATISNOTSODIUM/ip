@@ -6,6 +6,7 @@ import cattis.exception.CattisException;
 import cattis.task.Task;
 import cattis.task.TaskList;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -30,7 +31,7 @@ public class AddTodoTaskCommandTest {
     }
 
     @Test
-    public void addTodoTask_emptyTaskName_exceptionThrown(){
+    public void addTodoTask_emptyTaskName_exceptionThrown() {
         try {
             AddTaskCommand cmd = new AddTodoTaskCommand("");
             CattisInterface cattis = new CattisStub();

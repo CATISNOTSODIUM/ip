@@ -4,7 +4,6 @@ import cattis.CattisInterface;
 import cattis.CattisStub;
 import cattis.exception.CattisException;
 import cattis.task.Task;
-import cattis.task.TaskList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
 public class DeadlineTask extends Task {
     public static final String icon = "[D]";
     private LocalDate deadline;
+
     DeadlineTask(String taskName, String deadline) throws CattisException {
         super(taskName);
         setTime(deadline);
