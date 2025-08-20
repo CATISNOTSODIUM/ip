@@ -60,6 +60,9 @@ public class EventTask extends Task {
             var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
             this.startTime = LocalDate.parse(startTime, formatter);
             this.endTime = LocalDate.parse(endTime, formatter);
+            if (this.endTime.isBefore(this.startTime)) {
+                throw new CattisException("Start time must be before end time");
+            }
         } catch (DateTimeParseException err) {
             throw new CattisException("Failed to parse time for " + DATE_TIME_INPUT_FORMATTER);
         }

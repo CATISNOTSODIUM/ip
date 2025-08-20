@@ -35,4 +35,28 @@ public class AddEventTaskCommandTest {
             assertEquals(errMsg, err.getMessage());
         }
     }
+
+    @Test
+    public void addEventTask_endDateBeforeStartDate_exceptionThrown(){
+        try {
+            AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from 2020-12-10 /to 2020-10-10");
+            CattisInterface cattis = new CattisStub();
+            cmd.execute(cattis);
+            fail();
+        } catch (CattisException err) {
+            String errMsg = "Start time must be before end time";
+            assertEquals(errMsg, err.getMessage());
+        }
+    }
+
+    @Test
+    public void addEventTask_success(){
+        try {
+            AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from 2020-12-10 /to 2020-12-11");
+            CattisInterface cattis = new CattisStub();
+            cmd.execute(cattis);
+        } catch (CattisException err) {
+            fail();
+        }
+    }
 }
