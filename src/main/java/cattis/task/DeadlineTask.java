@@ -1,21 +1,38 @@
 package cattis.task;
 
-import cattis.exception.CattisException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import cattis.exception.CattisException;
 
 /**
  * Represents a task with <code>deadline</code>.
  */
 public class DeadlineTask extends Task {
-    public static final String icon = "[D]";
+    public static final String ICON = "[D]";
     private LocalDate deadline;
 
     DeadlineTask(String taskName, String deadline) throws CattisException {
         super(taskName);
         setTime(deadline);
+    }
+
+    /**
+     * Constructor for {@code DeadlineTask} with specific status
+     * primarily used for loading tasks from the file
+     * @param taskName task name
+     * @param deadline task deadline
+     * @param status mark or unmark
+     */
+    DeadlineTask(String taskName, String deadline, boolean status) throws CattisException {
+        super(taskName);
+        setTime(deadline);
+        if (status) {
+            this.mark();
+        } else {
+            this.unmark();
+        }
     }
 
     /**
@@ -42,7 +59,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toEncodedString() {
-        return icon + Task.SPLITTER
+        return ICON + Task.SPLITTER
                 + super.getStatusIcon()
                 + Task.SPLITTER + super.getTaskName() + Task.SPLITTER
                 + encodeDeadline();
@@ -50,7 +67,7 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return icon + super.toString() + String.format(
+        return ICON + super.toString() + String.format(
                 " (by: %s)", getDeadline());
     }
 
@@ -70,6 +87,10 @@ public class DeadlineTask extends Task {
                 : this.deadline.format(formatter);
     }
 
+    /**
+     * Format {@code this.deadline} as string based on input formatter
+     * @return encoded deadline
+     */
     public String encodeDeadline() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
         return this.deadline == null

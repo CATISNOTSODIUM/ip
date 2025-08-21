@@ -15,6 +15,18 @@ public class Cattis implements CattisInterface {
     private final Storage storage;
     private final TaskList taskList;
 
+    /**
+     * Constructs a new {@code Cattis} object.
+     * <p>
+     * This constructor initializes the core components of the application:
+     * {@link Ui}, {@link Parser}, {@link Storage}, and {@link TaskList}.
+     * It attempts to load any existing tasks from the specified file path. If
+     * an error occurs during the loading process (e.g., the file is not found
+     * or the data is corrupted), a {@link CattisException} is caught, and an
+     * error message is displayed to the user via the {@link Ui}.
+     *
+     * @param filePath The file path to the data file where tasks are stored.
+     */
     public Cattis(String filePath) {
         this.ui = new Ui();
         this.parser = new Parser();
@@ -40,6 +52,13 @@ public class Cattis implements CattisInterface {
         return this.ui;
     }
 
+    /**
+     * Initiate the application life cycle with the following stages
+     * <p>
+     * 1. Initialization: show initial message <p>
+     * 2. Receive and parse user input to retrieve {@link Command} <p>
+     * 3. Execute the command
+     */
     public void run() {
         ui.showInitialMessages();
         boolean isExit = false;

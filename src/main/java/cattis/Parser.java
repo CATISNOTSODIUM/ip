@@ -1,5 +1,7 @@
 package cattis;
 
+import java.util.Scanner;
+
 import cattis.command.AddDeadlineTaskCommand;
 import cattis.command.AddEventTaskCommand;
 import cattis.command.AddTodoTaskCommand;
@@ -12,8 +14,6 @@ import cattis.command.MarkCommand;
 import cattis.command.UnmarkCommand;
 import cattis.exception.CattisException;
 import cattis.exception.CattisParseException;
-
-import java.util.Scanner;
 
 /**
  * An instance to parse the input string into command
@@ -81,8 +81,8 @@ public class Parser {
             }
             remainingInput = scanner.nextLine();
             return new AddEventTaskCommand(remainingInput);
+        default:
+            return null;
         }
-        return null;
     }
 }
-

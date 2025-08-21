@@ -1,16 +1,16 @@
 package cattis.task;
 
-import cattis.exception.CattisException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import cattis.exception.CattisException;
 
 /**
  * Represents a task with <code>startTime</code> and <code>endTime</code>.
  */
 public class EventTask extends Task {
-    public static final String icon = "[E]";
+    public static final String ICON = "[E]";
 
     private LocalDate startTime;
     private LocalDate endTime;
@@ -18,6 +18,22 @@ public class EventTask extends Task {
     EventTask(String taskName, String startTime, String endTime) throws CattisException {
         super(taskName);
         setTime(startTime, endTime);
+    }
+
+    /**
+     * Constructor for {@code EventTask} with specific status
+     * primarily used for loading tasks from the file
+     * @param taskName task name
+     * @param status mark or unmark
+     */
+    EventTask(String taskName, String startTime, String endTime, boolean status) throws CattisException {
+        super(taskName);
+        setTime(startTime, endTime);
+        if (status) {
+            this.mark();
+        } else {
+            this.unmark();
+        }
     }
 
     /**
@@ -56,7 +72,7 @@ public class EventTask extends Task {
 
     @Override
     public String toEncodedString() {
-        return icon + Task.SPLITTER
+        return ICON + Task.SPLITTER
                 + super.getStatusIcon()
                 + Task.SPLITTER + super.getTaskName() + Task.SPLITTER
                 + encodeStartTime() + Task.SPLITTER
@@ -65,7 +81,7 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return icon + super.toString() + String.format(
+        return ICON + super.toString() + String.format(
                 " (from: %s to: %s)", getStartTime(), getEndTime()
         );
     }
@@ -100,6 +116,10 @@ public class EventTask extends Task {
                 : this.startTime.format(formatter);
     }
 
+    /**
+     * Format {@code this.startTime} as string based on input formatter
+     * @return encoded deadline
+     */
     public String encodeStartTime() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
         return this.startTime == null
@@ -107,11 +127,15 @@ public class EventTask extends Task {
                 : this.startTime.format(formatter);
     }
 
+    /**
+     * Format {@code this.endTime} as string based on input formatter
+     * @return encoded deadline
+     */
     public String encodeEndTime() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
-        return this.startTime == null
+        return this.endTime == null
                 ? "[No end time]"
-                : this.startTime.format(formatter);
+                : this.endTime.format(formatter);
     }
 
     public String getEndTime() {
