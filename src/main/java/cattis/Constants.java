@@ -1,5 +1,8 @@
 package cattis;
 
+/**
+ * A collection of all global constants for future configuration.
+ */
 public final class Constants {
     public static final String CHATBOT_NAME = "CATTIS \uD83D\uDC31";
     public static final String HORIZONTAL_LINE = "__________";

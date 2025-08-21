@@ -1,5 +1,8 @@
 package cattis.exception;
 
+/**
+ * Handle load file error
+ */
 public class CattisLoadFileException extends CattisException {
     public CattisLoadFileException(String msg) {
         super(msg);

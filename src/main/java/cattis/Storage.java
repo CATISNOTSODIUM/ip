@@ -1,16 +1,16 @@
 package cattis;
 
-import cattis.exception.CattisException;
-import cattis.exception.CattisSaveFileException;
-import cattis.task.Task;
-import cattis.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import cattis.exception.CattisException;
+import cattis.exception.CattisSaveFileException;
+import cattis.task.Task;
+import cattis.task.TaskList;
 
 /**
  * A class deals with loading tasks from the file and saving tasks in the file
@@ -25,6 +25,7 @@ public class Storage {
 
     /**
      * Load data from file filePath
+     *
      * @param cattis application instance
      * @throws CattisException If unsuccessfully load the file
      */
