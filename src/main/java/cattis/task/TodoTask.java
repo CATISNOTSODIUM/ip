@@ -6,12 +6,18 @@ import cattis.exception.CattisException;
  * Represents task with only task name and status
  */
 public class TodoTask extends Task {
-    public static final String icon = "[T]";
+    public static final String ICON = "[T]";
 
     public TodoTask(String taskName) {
         super(taskName);
     }
 
+    /**
+     * Constructor for {@code TodoTask} with specific status
+     * primarily used for loading tasks from the file
+     * @param taskName task name
+     * @param status status [X] or [ ]
+     */
     public TodoTask(String taskName, boolean status) {
         super(taskName);
         if (status) {
@@ -39,11 +45,11 @@ public class TodoTask extends Task {
 
     @Override
     public String toEncodedString() {
-        return icon + Task.SPLITTER + super.getStatusIcon() + Task.SPLITTER + super.getTaskName();
+        return ICON + Task.SPLITTER + super.getStatusIcon() + Task.SPLITTER + super.getTaskName();
     }
 
     @Override
     public String toString() {
-        return icon + super.toString();
+        return ICON + super.toString();
     }
 }

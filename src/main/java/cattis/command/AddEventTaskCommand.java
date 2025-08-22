@@ -7,7 +7,7 @@ import cattis.task.EventTask;
 import cattis.task.Task;
 
 /**
- * Represents the command to add <code>EventTasj</code> to the
+ * Represents the command to add <code>EventTask</code> to the
  * task list <code>Cattis.getTaskList()</code> instance.
  */
 public class AddEventTaskCommand extends AddTaskCommand {

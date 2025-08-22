@@ -1,9 +1,9 @@
 package cattis.ui;
 
+import java.util.Scanner;
+
 import cattis.Constants;
 import cattis.exception.CattisException;
-
-import java.util.Scanner;
 
 /**
  * Handle all user input / output logics
@@ -19,6 +19,10 @@ public class Ui {
         System.out.println(Constants.GREETING_MSG);
     }
 
+    /**
+     * Reads the input from the console (by line)
+     * @return the string input by user
+     */
     public String readCommand() {
         if (!scanner.hasNextLine()) {
             return "";

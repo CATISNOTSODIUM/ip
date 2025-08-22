@@ -1,10 +1,10 @@
 package cattis.task;
 
-import cattis.exception.CattisException;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import cattis.exception.CattisException;
 
 /**
  * Represents an abstract task with a name and completion status.
@@ -48,20 +48,21 @@ public abstract class Task {
         status = "[X]".equals(arr.get(1));
         String taskName = arr.get(2);
         switch (taskType) {
-        case TodoTask.icon:
+        case TodoTask.ICON:
             return new TodoTask(taskName, status);
-        case DeadlineTask.icon:
+        case DeadlineTask.ICON:
             if (arr.size() != 4) {
                 throw new CattisException("Failed to load task from disk");
             }
-            return new DeadlineTask(taskName, arr.get(3));
-        case EventTask.icon:
+            return new DeadlineTask(taskName, arr.get(3), status);
+        case EventTask.ICON:
             if (arr.size() != 5) {
                 throw new CattisException("Failed to load task from disk");
             }
-            return new EventTask(taskName, arr.get(3), arr.get(4));
+            return new EventTask(taskName, arr.get(3), arr.get(4), status);
+        default:
+            return null;
         }
-        return null;
     }
 
     public void mark() {

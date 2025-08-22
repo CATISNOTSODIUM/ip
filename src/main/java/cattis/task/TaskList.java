@@ -1,11 +1,11 @@
 package cattis.task;
 
-import cattis.exception.CattisException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import cattis.exception.CattisException;
 
 /**
  * A class that encapsulate the actual list of tasks
@@ -75,8 +75,8 @@ public class TaskList {
      * Quickly prints out the number of elements in the list
      */
     public void taskListSummary() {
-        String TASK_LIST_SUMMARY = "Now you have %s tasks in the list.\n";
-        System.out.printf(TASK_LIST_SUMMARY, this.count());
+        String msg = "Now you have %s tasks in the list.\n";
+        System.out.printf(msg, this.count());
     }
 
     /**
@@ -84,9 +84,9 @@ public class TaskList {
      * @return the encoded string
      */
     public String toEncodedString() {
-        return tasks.stream().
-                map(Task::toEncodedString).
-                collect(Collectors.joining("\n"));
+        return tasks.stream()
+                .map(Task::toEncodedString)
+                .collect(Collectors.joining("\n"));
     }
 
     @Override
