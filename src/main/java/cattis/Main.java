@@ -8,7 +8,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Cattis duke = new Cattis("");
+    private Cattis cattis = new Cattis("");
 
     @Override
     public void start(Stage stage) {
