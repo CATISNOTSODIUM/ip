@@ -16,6 +16,13 @@ public class Cattis implements CattisInterface {
     private final TaskList taskList;
 
     /**
+     * Default constructor based on the default file path
+     */
+    public Cattis() {
+        this(Cattis.DEFAULT_FILE_PATH);
+    }
+
+    /**
      * Constructs a new {@code Cattis} object.
      * <p>
      * This constructor initializes the core components of the application:

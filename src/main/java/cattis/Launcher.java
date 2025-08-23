@@ -3,7 +3,7 @@ package cattis;
 import javafx.application.Application;
 
 /**
- * A launcher class
+ * Main launcher class for JavaFX application
  */
 public class Launcher {
     public static void main(String[] args) {

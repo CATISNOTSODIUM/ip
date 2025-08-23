@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700');
+.root {
+    -fx-font-family: "Roboto Mono";
+}
+
+.text-field {
+    -fx-font: 15px "Roboto Mono";
+}
+
+#title {
+    -fx-font: 20px "Roboto Mono";
+}
+
+.reply-label {
+    -fx-background-radius: 1em 1em 1em 0;
+    -fx-border-radius: 1em 1em 1em 0;
+    -fx-font: 15px "Roboto Mono";
+}
+
+.text-field:hover {
+    -fx-background-color: #FDF5E6;
+}
+
+.text-field:focused {
+    -fx-background-color: #FDF5E6;
+    -fx-border-color: #F5DEB3;
+}
