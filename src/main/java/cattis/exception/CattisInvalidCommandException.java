@@ -1,0 +1,22 @@
+package cattis.exception;
+
+/**
+ * Represents default (invalid) command
+ */
+public class CattisInvalidCommandException extends CattisException {
+    /**
+     * default constructor
+     */
+    public CattisInvalidCommandException() {
+        super("List of Commands\n"
+                + "list: list all tasks\n"
+                + "todo [task]: add a todo task\n"
+                + "deadline [task] /by [Deadline]: add a task with a deadline\n"
+                + "event [task] /from [Start] /to [End]: add an event with a time range\n"
+                + "delete [index]: remove a task\n"
+                + "mark [index]: mark a task as done\n"
+                + "unmark [index]: mark a task as not done\n"
+                + "find [keyword]: search tasks\n"
+                + "bye: exit the application\n");
+    }
+}

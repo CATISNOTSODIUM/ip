@@ -16,6 +16,13 @@ public class Cattis implements CattisInterface {
     private final TaskList taskList;
 
     /**
+     * Default constructor based on the default file path
+     */
+    public Cattis() {
+        this(Cattis.DEFAULT_FILE_PATH);
+    }
+
+    /**
      * Constructs a new {@code Cattis} object.
      * <p>
      * This constructor initializes the core components of the application:
@@ -50,6 +57,31 @@ public class Cattis implements CattisInterface {
 
     public Ui getUi() {
         return this.ui;
+    }
+
+    /**
+     * Running a single command (for non CLI applications)
+     * @param input input from user
+     * @return boolean true if {@code isExit} is true
+     */
+    public boolean runOneCommand(String input) {
+        try {
+            boolean isExit = false;
+            Command cmd = parser.parse(input);
+            if (cmd == null) {
+                ui.showMessage("Cannot parse input: " + input);
+                return false;
+            }
+            isExit = cmd.isExit();
+            if (isExit) {
+                return true;
+            }
+            cmd.execute(this);
+            storage.save(this.taskList);
+        } catch (CattisException err) {
+            ui.showError(err);
+        }
+        return false;
     }
 
     /**

@@ -10,9 +10,14 @@ import cattis.exception.CattisException;
  */
 public class Ui {
     private final Scanner scanner;
+    private String latestMessages;
 
+    /**
+     * default constructor, reset {@code messages}
+     */
     public Ui() {
         this.scanner = new Scanner(System.in);
+        this.resetMessages();
     }
 
     public void showInitialMessages() {
@@ -35,14 +40,32 @@ public class Ui {
     }
 
     public void showError(CattisException err) {
-        System.out.println(err.toString());
+        this.showMessage(err.toString());
     }
 
+    public String getLatestMessage() {
+        return "".equals(this.latestMessages)
+                ? "<empty>"
+                : this.latestMessages;
+    }
+
+    public void resetMessages() {
+        this.latestMessages = "";
+    }
+
+    /**
+     * Add message to the {@code latestMessages} while printing the result.
+     * @param msg message to show
+     */
     public void showMessage(String msg) {
+        this.latestMessages += msg;
         System.out.println(msg);
     }
 
+    /**
+     * displaying exit message
+     */
     public void showExitMessages() {
-        System.out.println(Constants.EXIT_MSG);
+        this.showMessage(Constants.EXIT_MSG);
     }
 }
