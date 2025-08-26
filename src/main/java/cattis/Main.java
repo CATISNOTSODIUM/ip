@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import cattis.component.DialogBox;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -22,6 +23,11 @@ public class Main extends Application {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
+
+    @FXML
+    public void initialize() {
+        dialogScrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+    }
 
     @Override
     public void start(Stage stage) {
@@ -45,7 +51,12 @@ public class Main extends Application {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = "DUMMY"; // TODO
+        cattis.getUi().resetMessages();
+        boolean isExit = cattis.runOneCommand(input);
+        if (isExit) {
+            Platform.exit();
+        }
+        String response = cattis.getUi().getLatestMessage();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input),
                 DialogBox.getCattisDialog(response)

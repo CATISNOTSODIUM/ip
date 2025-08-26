@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700');
-
-.reply-label-left {
-    -fx-background-radius: 1em 1em 1em 0;
-    -fx-border-radius: 1em 1em 1em 0;
-    -fx-font: 15px "Roboto Mono";
-}
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono');
 
 .reply-label-right {
-    -fx-background-radius: 1em 1em 0 1em;
-    -fx-border-radius: 1em 1em 0 1em;
-    -fx-font: 15px "Roboto Mono";
+    -fx-background-radius: 2em 2em 2em 2em;
+    -fx-font: 13px "JetBrains Mono";
+    -fx-background-color: #24283b;
+    -fx-text-fill: #a9b1d6;
+    -fx-max-width: 400px;
+    -fx-padding: 12px 20px;
 }

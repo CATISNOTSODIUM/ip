@@ -21,7 +21,7 @@ public class AddDeadlineTaskCommand extends AddTaskCommand {
     public void execute(CattisInterface cattis) throws CattisException {
         Task newTask = DeadlineTask.createFromPrompt(taskName);
         cattis.getTaskList().add(newTask);
-        System.out.printf((Constants.ADD_TASK_MSG), newTask);
+        cattis.getUi().showMessage(String.format(Constants.ADD_TASK_MSG, newTask));
         cattis.getTaskList().taskListSummary();
     }
 }

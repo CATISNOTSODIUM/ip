@@ -14,19 +14,19 @@
    <children>
       <BorderPane layoutX="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="492.0" prefWidth="338.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="-1.1999999999999886" AnchorPane.rightAnchor="0.6000000000000227" AnchorPane.topAnchor="0.0">
          <bottom>
-            <HBox prefHeight="53.0" prefWidth="338.0" style="-fx-background-color: #FFF2EB;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="53.0" prefWidth="338.0" style="-fx-background-color: #24283B;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="29.0" style="-fx-background-color: D8AE7E;" text="~" textFill="#916565">
+                  <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="29.0" style="-fx-background-color: 414868;" text="~" textFill="#c0caf5">
                   </Button>
-                  <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="54.0" prefWidth="283.0" promptText="/help for more details" style="-fx-background-color: FFE0B5;" text="todo finish CS2103T individual project (iP)" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="userInput" onAction="#handleUserInput" prefHeight="54.0" prefWidth="283.0" promptText="/help for more details" style="-fx-background-color: #24283B; -fx-text-fill: #b4f9f8;"  HBox.hgrow="ALWAYS">
                   </TextField>
                </children>
             </HBox>
          </bottom>
          <top>
-            <HBox prefHeight="54.0" prefWidth="307.0" style="-fx-background-color: #FFD6BA;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="54.0" prefWidth="307.0" style="-fx-background-color: #24283b;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="54.0" prefWidth="353.0" text="CATTIS v0.1 /&gt; . &lt;マ ₊˚⊹♡" textFill="#918282" textOverrun="WORD_ELLIPSIS">
+                  <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="54.0" prefWidth="353.0" text="CATTIS v0.1 /&gt; . &lt;マ ₊˚⊹♡" textFill="#cfc9c2" textOverrun="WORD_ELLIPSIS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -37,7 +37,7 @@
          <center>
             <ScrollPane fx:id="dialogScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" hvalue="1.0" prefHeight="384.0" prefWidth="350.0" style="-fx-background-color: transparent;" vbarPolicy="AS_NEEDED" vvalue="1.0" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="dialogContainer" alignment="TOP_RIGHT" prefWidth="350.0" style="-fx-background-color: #FFF2D7;">
+                  <VBox fx:id="dialogContainer" alignment="TOP_RIGHT" prefWidth="350.0" style="-fx-background-color: #1a1b26;">
                      <children>
                         <!-- Dialog messages will be added here -->
                      </children>

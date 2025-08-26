@@ -60,6 +60,31 @@ public class Cattis implements CattisInterface {
     }
 
     /**
+     * Running a single command (for non CLI applications)
+     * @param input input from user
+     * @return boolean true if {@code isExit} is true
+     */
+    public boolean runOneCommand(String input) {
+        try {
+            boolean isExit = false;
+            Command cmd = parser.parse(input);
+            if (cmd == null) {
+                ui.showMessage("Cannot parse input: " + input);
+                return false;
+            }
+            isExit = cmd.isExit();
+            if (isExit) {
+                return true;
+            }
+            cmd.execute(this);
+            storage.save(this.taskList);
+        } catch (CattisException err) {
+            ui.showError(err);
+        }
+        return false;
+    }
+
+    /**
      * Initiate the application life cycle with the following stages
      * <p>
      * 1. Initialization: show initial message <p>

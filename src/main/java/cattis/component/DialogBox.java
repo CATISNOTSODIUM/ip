@@ -22,6 +22,7 @@ public class DialogBox extends HBox {
 
     private DialogBox(String text) {
         try {
+            dialog = new Label(text);
             FXMLLoader fxmlLoader = new FXMLLoader(
                     StartWindow.class.getResource("/view/component/Dialog.fxml"));
             fxmlLoader.setController(this);

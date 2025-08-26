@@ -18,6 +18,7 @@ public class MarkCommand extends Command {
     @Override
     public void execute(CattisInterface cattis) throws CattisException {
         cattis.getTaskList().mark(taskIndex);
-        System.out.printf((Constants.MARK_TASK_MSG), cattis.getTaskList().get(taskIndex));
+        cattis.getUi().showMessage(String.format(Constants.MARK_TASK_MSG,
+                cattis.getTaskList().get(taskIndex)));
     }
 }

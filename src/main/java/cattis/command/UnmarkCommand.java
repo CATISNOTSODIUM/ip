@@ -18,6 +18,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(CattisInterface cattis) throws CattisException {
         cattis.getTaskList().unmark(taskIndex);
-        System.out.printf((Constants.UNMARK_TASK_MSG), cattis.getTaskList().get(taskIndex));
+        cattis.getUi().showMessage(String.format(Constants.UNMARK_TASK_MSG,
+                cattis.getTaskList().get(taskIndex)));
     }
 }

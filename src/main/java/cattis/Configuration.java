@@ -1,8 +1,6 @@
 package cattis;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -14,7 +12,6 @@ import javafx.stage.Stage;
  * Represent the configuration of the app
  */
 public class Configuration {
-    private static final String GoogleFontLink = "https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700";
     private final String resource;
     private final double horizontalRatio;
     private final double verticalRatio;
@@ -49,7 +46,6 @@ public class Configuration {
         }
         if (this.scene == null) {
             this.scene = new Scene(this.loader.load());
-            this.scene.getStylesheets().add(GoogleFontLink);
         }
         return this.scene;
     }
@@ -65,8 +61,8 @@ public class Configuration {
         stage.setWidth(screenBounds.getWidth() * this.horizontalRatio);
         stage.setHeight(screenBounds.getHeight() * this.verticalRatio);
 
-        stage.setX((screenBounds.getWidth() + stage.getWidth()) / 2);
-        stage.setY((screenBounds.getHeight() + stage.getHeight()) / 2);
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
         stage.setScene(this.getScene());
     }
 }
