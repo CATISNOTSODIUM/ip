@@ -19,7 +19,7 @@ public class DeleteTaskCommand extends Command {
     @Override
     public void execute(CattisInterface cattis) throws CattisException {
         Task deletedTask = cattis.getTaskList().delete(taskIndex);
-        System.out.printf((Constants.REMOVE_TASK_MSG), deletedTask);
+        cattis.getUi().showMessage(String.format(Constants.REMOVE_TASK_MSG, deletedTask));
         cattis.getTaskList().taskListSummary();
     }
 }

@@ -13,6 +13,7 @@ import cattis.command.ListCommand;
 import cattis.command.MarkCommand;
 import cattis.command.UnmarkCommand;
 import cattis.exception.CattisException;
+import cattis.exception.CattisInvalidCommandException;
 import cattis.exception.CattisParseException;
 
 /**
@@ -82,7 +83,7 @@ public class Parser {
             remainingInput = scanner.nextLine();
             return new AddEventTaskCommand(remainingInput);
         default:
-            return null;
+            throw new CattisInvalidCommandException();
         }
     }
 }
