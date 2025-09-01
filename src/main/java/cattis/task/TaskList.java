@@ -115,7 +115,7 @@ public class TaskList {
 
         for (Task task : this.tasks) {
             if (task.getTaskName().toLowerCase().contains(name.toLowerCase())) {
-                result.append(index).append(". ").append(task);
+                result.append(index).append(". ").append(task).append("\n");
             }
             index++;
         }
