@@ -10,6 +10,6 @@ public class CattisParseException extends CattisException {
 
     @Override
     public String toString() {
-        return String.format("⚠ OOPS! Parsing error for %s", super.getMessage());
+        return String.format(PARSING, super.getMessage());
     }
 }

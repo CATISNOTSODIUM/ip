@@ -10,6 +10,6 @@ public class CattisSaveFileException extends CattisException {
 
     @Override
     public String toString() {
-        return String.format("⚠ Failed to save file. %s", super.getMessage());
+        return String.format(SAVE_FILE, super.getMessage());
     }
 }

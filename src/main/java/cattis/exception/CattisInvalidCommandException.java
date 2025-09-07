@@ -5,7 +5,7 @@ package cattis.exception;
  */
 public class CattisInvalidCommandException extends CattisException {
     /**
-     * default constructor
+     * Default message for showing all possible commands
      */
     public CattisInvalidCommandException() {
         super("List of Commands\n"
