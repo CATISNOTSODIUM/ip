@@ -46,7 +46,7 @@ public class Storage {
                     sb.append(c);
                 }
             }
-            if (sb.length() > 0) {
+            if (!sb.isEmpty()) {
                 result.add(sb.toString());
             }
         } catch (FileNotFoundException err) {

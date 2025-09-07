@@ -17,12 +17,10 @@ import cattis.exception.CattisInvalidCommandException;
 import cattis.exception.CattisParseException;
 
 /**
- * An instance to parse the input string into command
+ * Parses the input string into {@code Command}.
  */
 public class Parser {
-    public Parser() {
-    }
-
+    private static final int DEFAULT_TASK_INDEX = -1;
     /**
      * Convert string to command for execution
      *
@@ -33,7 +31,7 @@ public class Parser {
     public Command parse(String payload) throws CattisException {
         Scanner scanner = new Scanner(payload);
         String command = scanner.next();
-        int taskIndex;
+        int taskIndex = DEFAULT_TASK_INDEX;
         String remainingInput;
         switch (command) {
         case "list":
@@ -45,6 +43,7 @@ public class Parser {
                 throw new CattisParseException(command);
             }
             taskIndex = scanner.nextInt();
+            assert taskIndex != DEFAULT_TASK_INDEX;
             return new MarkCommand(taskIndex);
         case "unmark":
             if (!scanner.hasNextInt()) {
@@ -57,6 +56,7 @@ public class Parser {
                 throw new CattisParseException(command);
             }
             taskIndex = scanner.nextInt();
+            assert taskIndex != DEFAULT_TASK_INDEX;
             return new DeleteTaskCommand(taskIndex);
         case "todo":
             if (!scanner.hasNextLine()) {

@@ -104,6 +104,9 @@ public class EventTask extends Task {
             if (this.endTime.isBefore(this.startTime)) {
                 throw new CattisException("Start time must be before end time");
             }
+            if (this.startTime.isBefore(LocalDate.now())) {
+                throw new CattisException("Start time must not be in the past");
+            }
         } catch (DateTimeParseException err) {
             throw new CattisException("Failed to parse time for " + DATE_TIME_INPUT_FORMATTER);
         }

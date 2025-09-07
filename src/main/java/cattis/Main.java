@@ -63,4 +63,15 @@ public class Main extends Application {
         );
         userInput.clear();
     }
+
+    /**
+     * Handle deferred messages in UI
+     */
+    private void handleDeferredMessages() {
+        String response = cattis.getUi().getLatestMessage();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getCattisDialog(response)
+        );
+        userInput.clear();
+    }
 }
