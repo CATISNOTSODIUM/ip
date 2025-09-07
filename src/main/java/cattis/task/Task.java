@@ -18,7 +18,6 @@ import cattis.exception.CattisException;
  */
 public abstract class Task {
     public static final String SPLITTER = "<>";
-    // Date time
     public static final String DATE_TIME_INPUT_FORMATTER = "yyyy-MM-dd";
     public static final String DATE_TIME_OUTPUT_FORMATTER = "MMM dd yyyy";
     private final String taskName;
@@ -39,7 +38,7 @@ public abstract class Task {
      */
     public static Task decode(String payload) throws CattisException {
         List<String> arr = Arrays.stream(payload.split(Task.SPLITTER))
-                .map(String::trim).collect(Collectors.toList());
+                .map(String::trim).toList();
         if (arr.size() < 3) {
             throw new CattisException("Failed to load task from disk");
         }
@@ -47,22 +46,22 @@ public abstract class Task {
         boolean status;
         status = "[X]".equals(arr.get(1));
         String taskName = arr.get(2);
-        switch (taskType) {
-        case TodoTask.ICON:
-            return new TodoTask(taskName, status);
-        case DeadlineTask.ICON:
-            if (arr.size() != 4) {
-                throw new CattisException("Failed to load task from disk");
+        return switch (taskType) {
+            case TodoTask.ICON -> new TodoTask(taskName, status);
+            case DeadlineTask.ICON -> {
+                if (arr.size() != 4) {
+                    throw new CattisException("Failed to load task from disk");
+                }
+                yield new DeadlineTask(taskName, arr.get(3), status);
             }
-            return new DeadlineTask(taskName, arr.get(3), status);
-        case EventTask.ICON:
-            if (arr.size() != 5) {
-                throw new CattisException("Failed to load task from disk");
+            case EventTask.ICON -> {
+                if (arr.size() != 5) {
+                    throw new CattisException("Failed to load task from disk");
+                }
+                yield new EventTask(taskName, arr.get(3), arr.get(4), status);
             }
-            return new EventTask(taskName, arr.get(3), arr.get(4), status);
-        default:
-            return null;
-        }
+            default -> null;
+        };
     }
 
     public void mark() {

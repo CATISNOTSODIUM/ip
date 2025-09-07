@@ -31,7 +31,11 @@ public class TaskList {
      * @param index one-indexed position to retrieve from the list
      * @return <code>Task</code> instance
      */
-    public Task get(int index) {
+    public Task get(int index) throws CattisException {
+        if (index > this.count()) {
+            throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
+        }
+        assert index >= 1 && index <= this.count();
         return this.tasks.get(index - 1);
     }
 
@@ -43,6 +47,7 @@ public class TaskList {
         if (index > this.count()) {
             throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
         }
+        assert index >= 1 && index <= this.count();
         this.tasks.get(index - 1).mark();
     }
 
@@ -67,6 +72,8 @@ public class TaskList {
             throw new CattisException(CattisException.TASK_OUT_OF_BOUND);
         }
         Task deletedTask = this.tasks.get(index - 1);
+        assert index >= 1 && index <= this.count();
+        assert deletedTask != null;
         this.tasks.remove(index - 1);
         return deletedTask;
     }
@@ -105,7 +112,8 @@ public class TaskList {
 
 
     /**
-     * Search all tasks whose task name contains the keyword <code>name</code>.
+     * Search all tasks whose task name contains the keyword <code>name</code>
+     * to summarize all tasks as string.
      * @param name keyword to search
      * @return list of filtered tasks concatenated as string
      */

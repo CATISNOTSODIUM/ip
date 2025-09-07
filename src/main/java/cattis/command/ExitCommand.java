@@ -9,6 +9,7 @@ import cattis.exception.CattisException;
 public class ExitCommand extends Command {
     @Override
     public void execute(CattisInterface cattis) throws CattisException {
+        // Do nothing
     }
 
     @Override

@@ -18,10 +18,11 @@ public class Ui {
     public Ui() {
         this.scanner = new Scanner(System.in);
         this.resetMessages();
+        assert "".equals(this.latestMessages);
     }
 
     public void showInitialMessages() {
-        System.out.println(Constants.GREETING_MSG);
+        showMessage(Constants.GREETING_MSG);
     }
 
     /**
@@ -59,7 +60,6 @@ public class Ui {
      */
     public void showMessage(String msg) {
         this.latestMessages += msg;
-        System.out.println(msg);
     }
 
     /**
