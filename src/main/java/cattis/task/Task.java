@@ -2,7 +2,6 @@ package cattis.task;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import cattis.exception.CattisException;
 
@@ -46,22 +45,29 @@ public abstract class Task {
         boolean status;
         status = "[X]".equals(arr.get(1));
         String taskName = arr.get(2);
-        return switch (taskType) {
-            case TodoTask.ICON -> new TodoTask(taskName, status);
-            case DeadlineTask.ICON -> {
-                if (arr.size() != 4) {
-                    throw new CattisException("Failed to load task from disk");
-                }
-                yield new DeadlineTask(taskName, arr.get(3), status);
+
+        Task task;
+        switch (taskType) {
+        case TodoTask.ICON:
+            task = new TodoTask(taskName, status);
+            break;
+        case DeadlineTask.ICON:
+            if (arr.size() != 4) {
+                throw new CattisException("Failed to load task from disk");
             }
-            case EventTask.ICON -> {
-                if (arr.size() != 5) {
-                    throw new CattisException("Failed to load task from disk");
-                }
-                yield new EventTask(taskName, arr.get(3), arr.get(4), status);
+            task = new DeadlineTask(taskName, arr.get(3), status);
+            break;
+        case EventTask.ICON:
+            if (arr.size() != 5) {
+                throw new CattisException("Failed to load task from disk");
             }
-            default -> null;
-        };
+            task = new EventTask(taskName, arr.get(3), arr.get(4), status);
+            break;
+        default:
+            task = null;
+            break;
+        }
+        return task;
     }
 
     public void mark() {
