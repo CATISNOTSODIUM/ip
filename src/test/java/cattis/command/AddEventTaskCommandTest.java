@@ -1,5 +1,7 @@
 package cattis.command;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -51,9 +53,31 @@ public class AddEventTaskCommandTest {
     }
 
     @Test
+    public void addEventTask_outdatedDate_exceptionThrown() {
+        try {
+            LocalDate fromDate = LocalDate.now().minusDays(7);
+            LocalDate toDate = LocalDate.now().minusDays(4);
+            String from = fromDate.toString(); // Format: yyyy-MM-dd
+            String to = toDate.toString();
+
+            AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from " + from + " /to " + to);
+            CattisInterface cattis = new CattisStub();
+            cmd.execute(cattis);
+            fail();
+        } catch (CattisException err) {
+            // pass
+        }
+    }
+
+    @Test
     public void addEventTask_success() {
         try {
-            AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from 2020-12-10 /to 2020-12-11");
+            // Adding event 7-14 days from now
+            LocalDate fromDate = LocalDate.now().plusDays(7);
+            LocalDate toDate = LocalDate.now().plusDays(10);
+            String from = fromDate.toString();
+            String to = toDate.toString();
+            AddTaskCommand cmd = new AddEventTaskCommand("task 1 /from " + from + " /to " + to);
             CattisInterface cattis = new CattisStub();
             cmd.execute(cattis);
         } catch (CattisException err) {
