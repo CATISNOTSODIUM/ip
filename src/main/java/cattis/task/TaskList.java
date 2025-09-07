@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import cattis.Constants;
 import cattis.exception.CattisException;
 
 /**
  * A class that encapsulate the actual list of tasks
  */
 public class TaskList {
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -82,7 +83,7 @@ public class TaskList {
      * Quickly prints out the number of elements in the list
      */
     public void taskListSummary() {
-        String msg = "Now you have %s tasks in the list.\n";
+        String msg = Constants.SUMMARY_TASK_MSG;
         System.out.printf(msg, this.count());
     }
 
@@ -99,7 +100,7 @@ public class TaskList {
     @Override
     public String toString() {
         if (this.tasks.isEmpty()) {
-            return "<empty>";
+            return Constants.EMPTY_MSG;
         }
         return IntStream.range(0, this.tasks.size())
                 .mapToObj(index -> String.format("%s. %s", index + 1, this.tasks.get(index)))

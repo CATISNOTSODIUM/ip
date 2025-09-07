@@ -46,7 +46,7 @@ public class Ui {
 
     public String getLatestMessage() {
         return "".equals(this.latestMessages)
-                ? "<empty>"
+                ? Constants.EMPTY_MSG
                 : this.latestMessages;
     }
 
