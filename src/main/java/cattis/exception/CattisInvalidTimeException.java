@@ -5,11 +5,6 @@ package cattis.exception;
  */
 public class CattisInvalidTimeException extends CattisException {
     public CattisInvalidTimeException(String msg) {
-        super(msg);
-    }
-
-    @Override
-    public String toString() {
-        return String.format(PARSE_TIME, super.getMessage());
+        super(PARSE_TIME + msg);
     }
 }

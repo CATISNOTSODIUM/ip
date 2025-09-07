@@ -34,8 +34,8 @@ public class AddEventTaskCommandTest {
             cmd.execute(cattis);
             fail();
         } catch (CattisException err) {
-            String errMsg = "Failed to parse time for " + Task.DATE_TIME_INPUT_FORMATTER;
-            assertEquals(errMsg, err.getMessage());
+            String errMsg = "⚠ OOPS! Failed to parse time for format " + Task.DATE_TIME_INPUT_FORMATTER;
+            assertEquals(errMsg, err.toString());
         }
     }
 
