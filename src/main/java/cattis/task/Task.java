@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cattis.exception.CattisException;
+import cattis.exception.CattisLoadFileException;
 
 /**
  * Represents an abstract task with a name and completion status.
@@ -19,6 +20,9 @@ public abstract class Task {
     public static final String SPLITTER = "<>";
     public static final String DATE_TIME_INPUT_FORMATTER = "yyyy-MM-dd";
     public static final String DATE_TIME_OUTPUT_FORMATTER = "MMM dd yyyy";
+    private static final String CHECKED_TASK_ICON = "[X]";
+    private static final String UNCHECKED_TASK_ICON = "[ ]";
+
     private final String taskName;
     private boolean isCompleted;
 
@@ -39,11 +43,11 @@ public abstract class Task {
         List<String> arr = Arrays.stream(payload.split(Task.SPLITTER))
                 .map(String::trim).toList();
         if (arr.size() < 3) {
-            throw new CattisException("Failed to load task from disk");
+            throw new CattisLoadFileException("Failed to load task from disk");
         }
         String taskType = arr.get(0);
         boolean status;
-        status = "[X]".equals(arr.get(1));
+        status = CHECKED_TASK_ICON.equals(arr.get(1));
         String taskName = arr.get(2);
 
         Task task;
@@ -53,13 +57,13 @@ public abstract class Task {
             break;
         case DeadlineTask.ICON:
             if (arr.size() != 4) {
-                throw new CattisException("Failed to load task from disk");
+                throw new CattisLoadFileException("Failed to load task from disk");
             }
             task = new DeadlineTask(taskName, arr.get(3), status);
             break;
         case EventTask.ICON:
             if (arr.size() != 5) {
-                throw new CattisException("Failed to load task from disk");
+                throw new CattisLoadFileException("Failed to load task from disk");
             }
             task = new EventTask(taskName, arr.get(3), arr.get(4), status);
             break;
@@ -79,7 +83,7 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return this.isCompleted ? "[X]" : "[ ]";
+        return this.isCompleted ? CHECKED_TASK_ICON : UNCHECKED_TASK_ICON;
     }
 
     public String getTaskName() {

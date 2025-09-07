@@ -5,12 +5,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import cattis.exception.CattisException;
+import cattis.exception.CattisInvalidTimeException;
 
 /**
  * Represents a task with <code>deadline</code>.
  */
 public class DeadlineTask extends Task {
     public static final String ICON = "[D]";
+    private static final String PREFIX_DEADLINE = "/by";
+    private static final String NO_DEADLINE_MSG = "[No deadline]";
     private LocalDate deadline;
 
     DeadlineTask(String taskName, String deadline) throws CattisException {
@@ -46,15 +49,14 @@ public class DeadlineTask extends Task {
      * @throws CattisException if the prompt cannot be parsed
      */
     public static DeadlineTask createFromPrompt(String prompt) throws CattisException {
-        String[] parts = prompt.split("/by", 2);
+        String[] parts = prompt.split(PREFIX_DEADLINE, 2);
         if (parts.length != 2) {
             throw new CattisException(CattisException.INCORRECT_FORMAT_DEADLINE);
-        } else {
-            if (parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
-                throw new CattisException(CattisException.EMPTY_FIELD);
-            }
-            return new DeadlineTask(parts[0].trim(), parts[1].trim());
         }
+        if (parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
+            throw new CattisException(CattisException.EMPTY_FIELD);
+        }
+        return new DeadlineTask(parts[0].trim(), parts[1].trim());
     }
 
     @Override
@@ -76,14 +78,14 @@ public class DeadlineTask extends Task {
             var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
             this.deadline = LocalDate.parse(deadline, formatter);
         } catch (DateTimeParseException err) {
-            throw new CattisException("Failed to parse time for format " + DATE_TIME_INPUT_FORMATTER);
+            throw new CattisInvalidTimeException(DATE_TIME_INPUT_FORMATTER);
         }
     }
 
     public String getDeadline() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMATTER);
         return this.deadline == null
-                ? "[No deadline]"
+                ? NO_DEADLINE_MSG
                 : this.deadline.format(formatter);
     }
 
@@ -94,7 +96,7 @@ public class DeadlineTask extends Task {
     public String encodeDeadline() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
         return this.deadline == null
-                ? "[No deadline]"
+                ? NO_DEADLINE_MSG
                 : this.deadline.format(formatter);
     }
 }

@@ -16,7 +16,11 @@ import cattis.task.TaskList;
  * A class deals with loading tasks from the file and saving tasks in the file
  */
 public class Storage {
-
+    private static final String CREATE_NEW_FILE_MSG = "Create new file ";
+    private static final String CANNOT_FIND_FILE_MSG = "Cannot find file ";
+    private static final String FAILED_LOAD_FILE_MSG = "Failed to load file ";
+    private static final String FAILED_SAVE_FILE_MSG = "Failed to save file ";
+    private static final String FAILED_CREATE_DIR_MSG = "Failed to create directory ";
     private final String filePath;
 
     public Storage(String filePath) {
@@ -32,29 +36,29 @@ public class Storage {
     public void load(CattisInterface cattis) throws CattisException {
         File tempFile = new File(this.filePath);
         if (!tempFile.exists()) {
-            cattis.getUi().showMessage("Create new file " + this.filePath);
+            cattis.getUi().showMessage(CREATE_NEW_FILE_MSG + this.filePath);
         }
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<String> results = new ArrayList<>();
         try (FileReader f = new FileReader(this.filePath)) {
             StringBuffer sb = new StringBuffer();
             while (f.ready()) {
                 char c = (char) f.read();
                 if (c == '\n') {
-                    result.add(sb.toString());
+                    results.add(sb.toString());
                     sb = new StringBuffer();
                 } else {
                     sb.append(c);
                 }
             }
             if (!sb.isEmpty()) {
-                result.add(sb.toString());
+                results.add(sb.toString());
             }
         } catch (FileNotFoundException err) {
-            throw new CattisException("Cannot find file " + this.filePath);
+            throw new CattisException(CANNOT_FIND_FILE_MSG + this.filePath);
         } catch (IOException err) {
-            throw new CattisException("Failed to load file. " + err.getMessage());
+            throw new CattisException(FAILED_LOAD_FILE_MSG + err.getMessage());
         }
-        for (String s : result) {
+        for (String s : results) {
             cattis.getTaskList().add(Task.decode(s));
         }
     }
@@ -70,17 +74,17 @@ public class Storage {
         File parentDir = file.getParentFile();
 
         if (parentDir != null && !parentDir.exists()) {
-            boolean created = parentDir.mkdirs();
-            if (!created) {
+            boolean isCreated = parentDir.mkdirs();
+            if (!isCreated) {
                 throw new CattisSaveFileException(
-                        "Failed to create directory: " + parentDir.getPath());
+                        FAILED_CREATE_DIR_MSG + parentDir.getPath());
             }
         }
 
         try (FileWriter fw = new FileWriter(filePath)) {
             fw.write(tasks.toEncodedString());
         } catch (IOException err) {
-            throw new CattisSaveFileException("Failed to save file " + err.getMessage());
+            throw new CattisSaveFileException(FAILED_SAVE_FILE_MSG + err.getMessage());
         }
     }
 }

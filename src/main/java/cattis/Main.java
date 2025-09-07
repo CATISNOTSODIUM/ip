@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * Main instance of the application
  */
 public class Main extends Application {
-
+    private static final String DEFAULT_SCREEN = "/view/ChatScreen.fxml";
     private Cattis cattis = new Cattis();
     @FXML
     private ScrollPane dialogScrollPane;
@@ -33,7 +33,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             var startConfig = new Configuration(
-                    "/view/ChatScreen.fxml", 0.4, 0.7);
+                    DEFAULT_SCREEN, 0.4, 0.7);
             setStage(stage, startConfig);
         } catch (IOException e) {
             e.printStackTrace();

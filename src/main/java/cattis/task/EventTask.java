@@ -5,12 +5,17 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import cattis.exception.CattisException;
+import cattis.exception.CattisInvalidTimeException;
 
 /**
  * Represents a task with <code>startTime</code> and <code>endTime</code>.
  */
 public class EventTask extends Task {
     public static final String ICON = "[E]";
+    private static final String PREFIX_START_TIME = "/from";
+    private static final String PREFIX_END_TIME = "/to";
+    private static final String NO_START_TIME_MSG = "[No start time]";
+    private static final String NO_END_TIME_MSG = "[No end time]";
 
     private LocalDate startTime;
     private LocalDate endTime;
@@ -50,15 +55,15 @@ public class EventTask extends Task {
      * @throws CattisException for parsing error
      */
     public static EventTask createFromPrompt(String prompt) throws CattisException {
-        String taskDescription = null;
-        String startTime = null;
-        String endTime = null;
-        String[] parts = prompt.split("/from", 2);
+        String taskDescription;
+        String startTime;
+        String endTime;
+        String[] parts = prompt.split(PREFIX_START_TIME, 2);
         if (parts.length != 2) {
             throw new CattisException(CattisException.INCORRECT_FORMAT_EVENT);
         }
         taskDescription = parts[0].trim();
-        parts = parts[1].trim().split("/to", 2);
+        parts = parts[1].trim().split(PREFIX_END_TIME, 2);
         if (parts.length != 2) {
             throw new CattisException(CattisException.INCORRECT_FORMAT_EVENT);
         }
@@ -107,15 +112,16 @@ public class EventTask extends Task {
             if (this.startTime.isBefore(LocalDate.now())) {
                 throw new CattisException("Start time must not be in the past");
             }
+            assert this.startTime != null && this.endTime != null;
         } catch (DateTimeParseException err) {
-            throw new CattisException("Failed to parse time for " + DATE_TIME_INPUT_FORMATTER);
+            throw new CattisInvalidTimeException(DATE_TIME_INPUT_FORMATTER);
         }
     }
 
     public String getStartTime() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMATTER);
         return this.startTime == null
-                ? "[No start time]"
+                ? NO_START_TIME_MSG
                 : this.startTime.format(formatter);
     }
 
@@ -126,7 +132,7 @@ public class EventTask extends Task {
     public String encodeStartTime() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
         return this.startTime == null
-                ? "[No start time]"
+                ? NO_START_TIME_MSG
                 : this.startTime.format(formatter);
     }
 
@@ -137,14 +143,14 @@ public class EventTask extends Task {
     public String encodeEndTime() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMATTER);
         return this.endTime == null
-                ? "[No end time]"
+                ? NO_END_TIME_MSG
                 : this.endTime.format(formatter);
     }
 
     public String getEndTime() {
         var formatter = DateTimeFormatter.ofPattern(DATE_TIME_OUTPUT_FORMATTER);
         return this.endTime == null
-                ? "[No end time]"
+                ? NO_END_TIME_MSG
                 : this.endTime.format(formatter);
     }
 }

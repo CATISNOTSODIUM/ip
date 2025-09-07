@@ -10,6 +10,10 @@ public class CattisException extends Exception {
     public static final String FORMAT_TODO = "todo [task]";
     public static final String FORMAT_DEADLINE = "deadline [task] /by [Deadline]";
     public static final String FORMAT_EVENT = "event [task] /from [Start] /to [End]";
+    public static final String LOAD_FILE = "⚠ Failed to load file. %s";
+    public static final String SAVE_FILE = "⚠ Failed to save file. %s";
+    public static final String PARSING = "⚠ OOPS! Parsing error for %s";
+    public static final String PARSE_TIME = "Failed to parse time for format ";
 
     public static final String INCORRECT_FORMAT_TODO = "Invalid format.\nCorrect format: " + FORMAT_TODO;
     public static final String INCORRECT_FORMAT_DEADLINE = "Invalid format.\nCorrect format: " + FORMAT_DEADLINE;

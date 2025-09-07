@@ -10,6 +10,6 @@ public class CattisLoadFileException extends CattisException {
 
     @Override
     public String toString() {
-        return String.format("⚠ Failed to load file. %s", super.getMessage());
+        return String.format(LOAD_FILE, super.getMessage());
     }
 }
