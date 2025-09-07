@@ -1,14 +1,16 @@
 package cattis.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
 
 import cattis.CattisInterface;
 import cattis.CattisStub;
 import cattis.exception.CattisException;
 import cattis.task.Task;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
 
 public class AddEventTaskCommandTest {
 
