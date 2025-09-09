@@ -5,6 +5,7 @@ import java.util.Scanner;
 import cattis.command.AddDeadlineTaskCommand;
 import cattis.command.AddEventTaskCommand;
 import cattis.command.AddTodoTaskCommand;
+import cattis.command.CalendarCommand;
 import cattis.command.Command;
 import cattis.command.DeleteTaskCommand;
 import cattis.command.ExitCommand;
@@ -34,6 +35,8 @@ public class Parser {
         int taskIndex = DEFAULT_TASK_INDEX;
         String remainingInput;
         switch (command) {
+        case "calendar":
+            return new CalendarCommand();
         case "list":
             return new ListCommand();
         case "bye":

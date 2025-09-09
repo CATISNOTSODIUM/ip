@@ -9,6 +9,7 @@ public class CattisInvalidCommandException extends CattisException {
      */
     public CattisInvalidCommandException() {
         super("List of Commands\n"
+                + "calendar: open calendar view\n"
                 + "list: list all tasks\n"
                 + "todo [task]: add a todo task\n"
                 + "deadline [task] /by [Deadline]: add a task with a deadline\n"

@@ -40,6 +40,20 @@ public class Configuration {
         this.verticalRatio = verticalRatio;
     }
 
+    /**
+     * Manual configuration with loader
+     * @param resource resource file
+     * @param horizontalRatio target ratio reference to screen size
+     * @param verticalRatio target ratio reference to screen size
+     */
+    public Configuration(String resource, double horizontalRatio,
+                         double verticalRatio, FXMLLoader loader) {
+        this.resource = resource;
+        this.horizontalRatio = horizontalRatio;
+        this.verticalRatio = verticalRatio;
+        this.loader = loader;
+    }
+
     private Scene getScene() throws IOException {
         if (this.loader == null) {
             this.loader = new FXMLLoader(getClass().getResource(resource));
@@ -64,5 +78,9 @@ public class Configuration {
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
         stage.setScene(this.getScene());
+    }
+
+    public FXMLLoader getLoader() {
+        return this.loader;
     }
 }
