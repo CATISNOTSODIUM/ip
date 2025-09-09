@@ -7,7 +7,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import cattis.Cattis;
 import cattis.CattisInterface;
 import cattis.task.Task;
 import javafx.fxml.FXML;
@@ -19,6 +18,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Represents the Calendar screen
+ */
 public class CalendarController {
 
     @FXML
@@ -30,10 +32,17 @@ public class CalendarController {
     private YearMonth currentMonth;
     private CattisInterface cattis;
 
+    /**
+     * Set the cattis instance in order to retrieve dates
+     * @param cattis main cattis application
+     */
     public void setCattis(CattisInterface cattis) {
         this.cattis = cattis;
     }
 
+    /**
+     * JavaFx initializer
+     */
     @FXML
     public void initialize() {
         this.currentMonth = YearMonth.now(ZoneId.of("Singapore"));
@@ -105,7 +114,8 @@ public class CalendarController {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // disables visible bar
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // just in case
         // Hide scroll bar with CSS
-        scrollPane.setStyle("-fx-background-color: transparent; -fx-padding: 0; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;");
+        scrollPane.setStyle("-fx-background-color: transparent; "
+                + "-fx-padding: 0; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;");
         scrollPane.lookupAll(".scroll-bar").forEach(bar -> bar.setVisible(false));
 
 
