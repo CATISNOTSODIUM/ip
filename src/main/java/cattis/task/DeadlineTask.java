@@ -59,6 +59,15 @@ public class DeadlineTask extends Task {
         return new DeadlineTask(parts[0].trim(), parts[1].trim());
     }
 
+    /**
+     * Check whether the task has equal date with target task
+     * @param date target date
+     * @return comparison result
+     */
+    public boolean isEqualDate(LocalDate date) {
+        return this.deadline.equals(date);
+    }
+
     @Override
     public String toEncodedString() {
         return ICON + Task.SPLITTER

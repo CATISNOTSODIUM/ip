@@ -40,7 +40,7 @@ public class Main extends Application {
         }
     }
 
-    private void setStage(Stage stage, Configuration config) throws IOException {
+    public static void setStage(Stage stage, Configuration config) throws IOException {
         config.loadConfiguration(stage);
         stage.show();
     }

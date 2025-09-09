@@ -1,5 +1,6 @@
 package cattis.task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -111,6 +112,30 @@ public class TaskList {
         return this.tasks.size();
     }
 
+
+    /**
+     * Retrieve all tasks from the specific date
+     * For {@code DeadlineTask}, include this task if the deadline is {@code date}
+     * For {@code EventTask}, include this task if start date or end date is {@code date}
+     * @param date target date
+     * @param hasTodo specify whether to include {@code TodoTask} or not
+     * @return targeted tasks
+     */
+    public List<Task> getTasksByDate(LocalDate date, boolean hasTodo) {
+        return this.tasks.stream()
+                .filter(task -> {
+                    if (task == null) {
+                        return hasTodo;
+                    }
+                    if (task instanceof DeadlineTask) {
+                        return ((DeadlineTask) task).isEqualDate(date);
+                    }
+                    if (task instanceof EventTask) {
+                        return ((EventTask) task).isEqualDate(date);
+                    }
+                    return false;
+                }).toList();
+    }
 
     /**
      * Search all tasks whose task name contains the keyword <code>name</code>

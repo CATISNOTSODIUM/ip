@@ -5,6 +5,7 @@ import java.util.Scanner;
 import cattis.command.AddDeadlineTaskCommand;
 import cattis.command.AddEventTaskCommand;
 import cattis.command.AddTodoTaskCommand;
+import cattis.command.CalendarCommand;
 import cattis.command.Command;
 import cattis.command.DeleteTaskCommand;
 import cattis.command.ExitCommand;
@@ -12,6 +13,7 @@ import cattis.command.FindTaskCommand;
 import cattis.command.ListCommand;
 import cattis.command.MarkCommand;
 import cattis.command.UnmarkCommand;
+import cattis.command.ViewScheduleCommand;
 import cattis.exception.CattisException;
 import cattis.exception.CattisInvalidCommandException;
 import cattis.exception.CattisParseException;
@@ -34,6 +36,14 @@ public class Parser {
         int taskIndex = DEFAULT_TASK_INDEX;
         String remainingInput;
         switch (command) {
+        case "calendar":
+            return new CalendarCommand();
+        case "view":
+            if (!scanner.hasNextLine()) {
+                throw new CattisParseException(command);
+            }
+            remainingInput = scanner.nextLine();
+            return new ViewScheduleCommand(remainingInput);
         case "list":
             return new ListCommand();
         case "bye":
