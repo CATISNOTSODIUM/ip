@@ -13,6 +13,7 @@ import cattis.command.FindTaskCommand;
 import cattis.command.ListCommand;
 import cattis.command.MarkCommand;
 import cattis.command.UnmarkCommand;
+import cattis.command.ViewScheduleCommand;
 import cattis.exception.CattisException;
 import cattis.exception.CattisInvalidCommandException;
 import cattis.exception.CattisParseException;
@@ -37,6 +38,12 @@ public class Parser {
         switch (command) {
         case "calendar":
             return new CalendarCommand();
+        case "view":
+            if (!scanner.hasNextLine()) {
+                throw new CattisParseException(command);
+            }
+            remainingInput = scanner.nextLine();
+            return new ViewScheduleCommand(remainingInput);
         case "list":
             return new ListCommand();
         case "bye":

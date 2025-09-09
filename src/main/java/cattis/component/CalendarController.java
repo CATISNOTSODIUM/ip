@@ -77,7 +77,7 @@ public class CalendarController {
         assert cattis != null;
         // Task list
         // Get task list for this date
-        List<Task> allTasks = cattis.getTaskList().getTasksByDate(date);
+        List<Task> allTasks = cattis.getTaskList().getTasksByDate(date, false);
         // Date label
         Label dateLabel = new Label(String.valueOf(date.getDayOfMonth()));
         dateLabel.setMaxWidth(Double.MAX_VALUE);

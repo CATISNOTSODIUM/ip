@@ -118,13 +118,14 @@ public class TaskList {
      * For {@code DeadlineTask}, include this task if the deadline is {@code date}
      * For {@code EventTask}, include this task if start date or end date is {@code date}
      * @param date target date
+     * @param hasTodo specify whether to include {@code TodoTask} or not
      * @return targeted tasks
      */
-    public List<Task> getTasksByDate(LocalDate date) {
+    public List<Task> getTasksByDate(LocalDate date, boolean hasTodo) {
         return this.tasks.stream()
                 .filter(task -> {
                     if (task == null) {
-                        return false;
+                        return hasTodo;
                     }
                     if (task instanceof DeadlineTask) {
                         return ((DeadlineTask) task).isEqualDate(date);
