@@ -30,6 +30,10 @@ public abstract class Task {
         this.taskName = taskName;
     }
 
+    public boolean isCompleted() {
+        return this.isCompleted;
+    }
+
     /**
      * Decodes a serialized task string into a <code>Task</code> object.
      * The payload must follow the format:

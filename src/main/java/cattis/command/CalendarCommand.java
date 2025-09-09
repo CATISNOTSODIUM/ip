@@ -6,6 +6,7 @@ import cattis.CattisInterface;
 import cattis.Configuration;
 import cattis.Constants;
 import cattis.Main;
+import cattis.component.CalendarController;
 import cattis.exception.CattisException;
 import javafx.stage.Stage;
 
@@ -22,9 +23,25 @@ public class CalendarCommand extends Command {
                     CALENDAR_SCREEN,
                     0.6,
                     0.7 );
-            Main.setStage(new Stage(), config);
+            config.initializeLoader();
+            Stage stage = new Stage();
+            config.getLoader().setControllerFactory(type -> {
+                if (type == cattis.component.CalendarController.class) {
+                    CalendarController controller = new CalendarController();
+                    controller.setCattis(cattis);
+                    return controller;
+                } else {
+                    // fallback for other controllers
+                    try {
+                        return type.getDeclaredConstructor().newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+            config.loadConfiguration(stage);
+            stage.show();
             assert config.getLoader() != null;
-
         } catch (IOException e) {
             throw new CattisException(e.getMessage());
         }

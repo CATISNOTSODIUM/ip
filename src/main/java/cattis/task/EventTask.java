@@ -125,6 +125,10 @@ public class EventTask extends Task {
                 : this.startTime.format(formatter);
     }
 
+    public boolean isEqualDate(LocalDate date) {
+        return this.startTime.equals(date) || this.endTime.equals(date);
+    }
+
     /**
      * Format {@code this.startTime} as string based on input formatter
      * @return encoded deadline

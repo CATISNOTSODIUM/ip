@@ -54,6 +54,15 @@ public class Configuration {
         this.loader = loader;
     }
 
+    /**
+     * Set initial loader without calling {@code getScene()}
+     */
+    public void initializeLoader() {
+        if (this.loader == null) {
+            this.loader = new FXMLLoader(getClass().getResource(resource));
+        }
+    }
+
     private Scene getScene() throws IOException {
         if (this.loader == null) {
             this.loader = new FXMLLoader(getClass().getResource(resource));

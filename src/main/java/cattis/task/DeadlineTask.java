@@ -58,6 +58,10 @@ public class DeadlineTask extends Task {
         }
         return new DeadlineTask(parts[0].trim(), parts[1].trim());
     }
+    
+    public boolean isEqualDate(LocalDate date) {
+        return this.deadline.equals(date);
+    }
 
     @Override
     public String toEncodedString() {
