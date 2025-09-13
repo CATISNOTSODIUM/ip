@@ -48,6 +48,7 @@ public class Cattis implements CattisInterface {
 
     public static void main(String[] args) {
         Cattis cattis = new Cattis(DEFAULT_FILE_PATH);
+        assert cattis.getUi() != null;
         cattis.run();
     }
 
