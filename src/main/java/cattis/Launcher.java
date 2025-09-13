@@ -3,7 +3,8 @@ package cattis;
 import javafx.application.Application;
 
 /**
- * Main launcher class for JavaFX application
+ * The main launcher of JavaFx application.
+ * @author Kosolpattanadurong Thitiwat
  */
 public class Launcher {
     public static void main(String[] args) {

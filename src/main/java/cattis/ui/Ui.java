@@ -58,6 +58,13 @@ public class Ui {
     }
 
     /**
+     * Checks if there exists some deferred messages that are not properly handled.
+     */
+    public boolean hasMessages() {
+        return "".equals(latestMessages);
+    }
+
+    /**
      * Getter for JavaFx component to obtain the status of the dialog
      */
     public boolean getUiStatus() {

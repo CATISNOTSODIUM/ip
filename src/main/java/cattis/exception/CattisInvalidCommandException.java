@@ -1,24 +1,31 @@
 package cattis.exception;
 
 /**
- * Represents default (invalid) command
+ * Exception thrown when the user enters an invalid or unrecognized command.
+ * <p>
+ * Provides a default message listing all valid commands supported by the application.
  */
 public class CattisInvalidCommandException extends CattisException {
+
     /**
-     * Default message for showing all possible commands
+     * Constructs a new {@code CattisInvalidCommandException} with a default message
+     * listing all supported commands in the application.
      */
     public CattisInvalidCommandException() {
-        super("List of Commands\n"
-                + "calendar: open calendar view\n"
-                + "view [date]: view all tasks in the specific date\n"
-                + "list: list all tasks\n"
-                + "todo [task]: add a todo task\n"
-                + "deadline [task] /by [Deadline]: add a task with a deadline\n"
-                + "event [task] /from [Start] /to [End]: add an event with a time range\n"
-                + "delete [index]: remove a task\n"
-                + "mark [index]: mark a task as done\n"
-                + "unmark [index]: mark a task as not done\n"
-                + "find [keyword]: search tasks\n"
-                + "bye: exit the application\n");
+        super(String.join("\n",
+                "⚠ Invalid command. Here is a list of valid commands:",
+                "",
+                "calendar               → open calendar view",
+                "view [date]            → view all tasks on a specific date",
+                "list                   → list all tasks",
+                "todo [task]            → add a todo task",
+                "deadline [task] /by [Deadline] → add a task with a deadline",
+                "event [task] /from [Start] /to [End] → add an event with a time range",
+                "delete [index]         → remove a task",
+                "mark [index]           → mark a task as done",
+                "unmark [index]         → mark a task as not done",
+                "find [keyword]         → search tasks",
+                "bye                    → exit the application"
+        ));
     }
 }
