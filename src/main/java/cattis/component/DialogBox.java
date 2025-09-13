@@ -35,22 +35,27 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     * Create Response Dialog box
      */
-    private void flip() {
+    private void createResponseDialogBox(boolean isError) {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        if (!isError) {
+            dialog.setStyle("-fx-background-color: #2c2d38;");
+        } else {
+            dialog.setStyle("-fx-background-color: #4a211e;");
+        }
     }
 
     public static DialogBox getUserDialog(String text) {
         return new DialogBox(text);
     }
 
-    public static DialogBox getCattisDialog(String text) {
+    public static DialogBox getCattisDialog(String text, boolean isError) {
         var db = new DialogBox(text);
-        db.flip();
+        db.createResponseDialogBox(isError);
         return db;
     }
 }

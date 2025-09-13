@@ -59,7 +59,7 @@ public class Main extends Application {
         String response = cattis.getUi().getLatestMessage();
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input),
-                DialogBox.getCattisDialog(response)
+                DialogBox.getCattisDialog(response, cattis.getUi().getUiStatus())
         );
         userInput.clear();
     }
@@ -70,7 +70,7 @@ public class Main extends Application {
     private void handleDeferredMessages() {
         String response = cattis.getUi().getLatestMessage();
         dialogContainer.getChildren().addAll(
-                DialogBox.getCattisDialog(response)
+                DialogBox.getCattisDialog(response, cattis.getUi().getUiStatus())
         );
         userInput.clear();
     }

@@ -11,6 +11,7 @@ import cattis.exception.CattisException;
 public class Ui {
     private final Scanner scanner;
     private String latestMessages;
+    private boolean isError;
 
     /**
      * default constructor, reset {@code messages}
@@ -18,6 +19,7 @@ public class Ui {
     public Ui() {
         this.scanner = new Scanner(System.in);
         this.resetMessages();
+        this.isError = false;
         assert "".equals(this.latestMessages);
     }
 
@@ -40,8 +42,13 @@ public class Ui {
         System.out.println("----");
     }
 
+    /**
+     * For {@code Main} class to send error and enable {@code isError} flag
+     * @param err {@code CattisException} error
+     */
     public void showError(CattisException err) {
         this.showMessage(err.toString());
+        this.isError = true;
     }
 
     public String getLatestMessage() {
@@ -50,8 +57,20 @@ public class Ui {
                 : this.latestMessages;
     }
 
+    /**
+     * Getter for JavaFx component to obtain the status of the dialog
+     */
+    public boolean getUiStatus() {
+        return this.isError;
+    }
+
+    /**
+     * Method to call in each cycle after
+     * the user sends a response and {@code Cattis} replies
+     */
     public void resetMessages() {
         this.latestMessages = "";
+        this.isError = false;
     }
 
     /**
