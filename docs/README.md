@@ -56,6 +56,7 @@ Shows the calendar view of all deadline and event tasks.
 Shows all tasks scheduled for a specific date. 
 - For deadline tasks, CATTIS will use deadline date as a reference.
 - For event tasks, CATTIS will use both start date and end date as a reference.
+
 > `view [date]`
 
 Example: `view 2025-09-19`
