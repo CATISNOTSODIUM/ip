@@ -19,12 +19,14 @@ import cattis.exception.CattisInvalidCommandException;
 import cattis.exception.CattisParseException;
 
 /**
- * Parses the input string into {@code Command}.
+ * Represents the object that parses the input string into {@code Command}.
  */
 public class Parser {
     private static final int DEFAULT_TASK_INDEX = -1;
+
     /**
-     * Convert string to command for execution
+     * Converts plain string to {@code Command} object in order
+     * to be used later in the {@code Main} class.
      *
      * @param payload the string content to parse
      * @return Command the result command

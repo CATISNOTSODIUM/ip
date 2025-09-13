@@ -84,45 +84,39 @@ public class CalendarController {
 
     private Node getIndividualNode(LocalDate date) {
         assert cattis != null;
-        // Task list
-        // Get task list for this date
-        List<Task> allTasks = cattis.getTaskList().getTasksByDate(date, false);
-        // Date label
+
+        List<Task> tasks = cattis.getTaskList().getTasksByDate(date, false);
+
         Label dateLabel = new Label(String.valueOf(date.getDayOfMonth()));
         dateLabel.setMaxWidth(Double.MAX_VALUE);
         dateLabel.setAlignment(Pos.CENTER_LEFT);
         dateLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 5px;");
 
-        VBox scrollContent = new VBox(allTasks.size() + 1);
+        VBox scrollContent = new VBox(tasks.size() + 1);
         scrollContent.setPadding(new Insets(5));
         scrollContent.setAlignment(Pos.TOP_LEFT);
 
-        //
-        for (int i = 0; i < allTasks.size(); i++) {
-            Label label = new Label(allTasks.get(i).getTaskName());
-            if (allTasks.get(i).isCompleted()) {
-                label.setStyle("-fx-background-color: #f5f0f0; -fx-text-fill: #bfbbbb; -fx-padding: 2px;");
-            } else {
-                label.setStyle("-fx-background-color: #f5d0d0; -fx-text-fill: #eb2626;  -fx-padding: 2px;");
-            }
+        tasks.forEach(task -> {
+            Label label = new Label(task.getTaskName());
+            String style = task.isCompleted()
+                    ? "-fx-background-color: #f5f0f0; -fx-text-fill: #bfbbbb; -fx-padding: 2px;"
+                    : "-fx-background-color: #f5d0d0; -fx-text-fill: #eb2626; -fx-padding: 2px;";
+            label.setStyle(style);
             label.setMaxWidth(Double.MAX_VALUE);
             scrollContent.getChildren().add(label);
-        }
+        });
 
         ScrollPane scrollPane = new ScrollPane(scrollContent);
         scrollPane.setFitToWidth(true);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // disables visible bar
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // just in case
-        // Hide scroll bar with CSS
-        scrollPane.setStyle("-fx-background-color: transparent; "
-                + "-fx-padding: 0; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;");
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-padding: 0; "
+                + "-fx-focus-color: transparent; -fx-faint-focus-color: transparent;");
         scrollPane.lookupAll(".scroll-bar").forEach(bar -> bar.setVisible(false));
 
-
-        VBox container = new VBox();
+        VBox container = new VBox(dateLabel, scrollPane);
         VBox.setMargin(scrollPane, new Insets(2));
-        container.setPrefWidth(120); // match your grid cell width
-        container.getChildren().addAll(dateLabel, scrollPane);
+        container.setPrefWidth(120);
 
         return container;
     }

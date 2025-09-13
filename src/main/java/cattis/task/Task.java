@@ -50,26 +50,26 @@ public abstract class Task {
             throw new CattisLoadFileException("Failed to load task from disk");
         }
         String taskType = arr.get(0);
-        boolean status;
-        status = CHECKED_TASK_ICON.equals(arr.get(1));
+        boolean isChecked;
+        isChecked = CHECKED_TASK_ICON.equals(arr.get(1));
         String taskName = arr.get(2);
 
         Task task;
         switch (taskType) {
         case TodoTask.ICON:
-            task = new TodoTask(taskName, status);
+            task = new TodoTask(taskName, isChecked);
             break;
         case DeadlineTask.ICON:
             if (arr.size() != 4) {
                 throw new CattisLoadFileException("Failed to load task from disk");
             }
-            task = new DeadlineTask(taskName, arr.get(3), status);
+            task = new DeadlineTask(taskName, arr.get(3), isChecked);
             break;
         case EventTask.ICON:
             if (arr.size() != 5) {
                 throw new CattisLoadFileException("Failed to load task from disk");
             }
-            task = new EventTask(taskName, arr.get(3), arr.get(4), status);
+            task = new EventTask(taskName, arr.get(3), arr.get(4), isChecked);
             break;
         default:
             task = null;

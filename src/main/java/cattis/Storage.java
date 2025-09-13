@@ -28,8 +28,11 @@ public class Storage {
     }
 
     /**
-     * Load data from file filePath
+     * Loads data from file {@code filePath} and supplies to the
+     * {@code cattis} instance.
      *
+     * If {@code filePath} does not exist, the system will create new file path
+     * for the user.
      * @param cattis application instance
      * @throws CattisException If unsuccessfully load the file
      */
@@ -64,8 +67,9 @@ public class Storage {
     }
 
     /**
-     * Save <code>tasks</code> to the target file
-     *
+     * Saves <code>tasks</code> to the target file {@code filePath}
+     * If file path is not specified or does not exist, the system will
+     * create new file path for user.
      * @param tasks tasks to be saved
      * @throws CattisException If unsuccessfully save the file
      */
