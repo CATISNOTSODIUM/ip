@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import cattis.CattisInterface;
 import cattis.Constants;
 import cattis.exception.CattisException;
 
@@ -83,9 +84,9 @@ public class TaskList {
     /**
      * Quickly prints out the number of elements in the list
      */
-    public void taskListSummary() {
+    public void taskListSummary(CattisInterface cattis) {
         String msg = Constants.SUMMARY_TASK_MSG;
-        System.out.printf(msg, this.count());
+        cattis.getUi().showMessage(String.format(msg, this.count()));
     }
 
     /**

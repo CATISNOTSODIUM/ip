@@ -23,6 +23,6 @@ public class AddTodoTaskCommand extends AddTaskCommand {
         cattis.getTaskList().add(newTask);
         cattis.getUi().showMessage(String.format(Constants.ADD_TASK_MSG,
                 newTask));
-        cattis.getTaskList().taskListSummary();
+        cattis.getTaskList().taskListSummary(cattis);
     }
 }

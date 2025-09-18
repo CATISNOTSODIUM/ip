@@ -22,6 +22,6 @@ public class AddEventTaskCommand extends AddTaskCommand {
         Task newTask = EventTask.createFromPrompt(taskName);
         cattis.getTaskList().add(newTask);
         cattis.getUi().showMessage(String.format(Constants.ADD_TASK_MSG, newTask));
-        cattis.getTaskList().taskListSummary();
+        cattis.getTaskList().taskListSummary(cattis);
     }
 }

@@ -15,17 +15,17 @@ public class CattisInvalidCommandException extends CattisException {
         super(String.join("\n",
                 "⚠ Invalid command. Here is a list of valid commands:",
                 "",
-                "calendar               → open calendar view",
-                "view [date]            → view all tasks on a specific date",
-                "list                   → list all tasks",
-                "todo [task]            → add a todo task",
+                "calendar          → open calendar view",
+                "view [date]       → view all tasks on a specific date",
+                "list              → list all tasks",
+                "todo [task]       → add a todo task",
                 "deadline [task] /by [Deadline] → add a task with a deadline",
                 "event [task] /from [Start] /to [End] → add an event with a time range",
-                "delete [index]         → remove a task",
-                "mark [index]           → mark a task as done",
-                "unmark [index]         → mark a task as not done",
-                "find [keyword]         → search tasks",
-                "bye                    → exit the application"
+                "delete [index]    → remove a task",
+                "mark [index]      → mark a task as done",
+                "unmark [index]    → mark a task as not done",
+                "find [keyword]    → search tasks",
+                "bye               → exit the application"
         ));
     }
 }
